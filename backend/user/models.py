@@ -13,7 +13,8 @@ class User(models.Model):
 class Rent(models.Model):
     rentId = models.AutoField(primary_key=True)
     userId = models.IntegerField()
-    roomId = models.CharField(max_length=255)
+    roomId = models.IntegerField(default=0)
+    status = models.IntegerField(default=0)  # 0 pending approve, 1 approved, 2 reject
     startTime = models.DateTimeField()
     endTime = models.DateTimeField()
     applyTime = models.DateTimeField()
@@ -22,6 +23,8 @@ class Rent(models.Model):
 class Bill(models.Model):
     billId = models.AutoField(primary_key=True)
     rentID = models.IntegerField()
+    status = models.IntegerField(default=0)  # 0 unPay, 1 payed
+    money = models.IntegerField(default=0)
 
 
 class RegisterCode(models.Model):
