@@ -22,3 +22,9 @@ class Rent(models.Model):
 class Bill(models.Model):
     billId = models.AutoField(primary_key=True)
     rentID = models.IntegerField()
+
+
+class RegisterCode(models.Model):
+    id = models.AutoField(primary_key=True)
+    email = models.CharField(max_length=30, default="")
+    code = models.CharField(max_length=30, default="")

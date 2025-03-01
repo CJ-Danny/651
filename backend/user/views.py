@@ -1,8 +1,14 @@
-from django.shortcuts import render
+import string
+import random
+
+from django.core import mail
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
 # Create your views here.
+from backend import settings
+from backend.settings import EMAIL_HOST_USER
 from user.models import *
 from manager.models import *
 from user.token import *
@@ -44,3 +50,43 @@ def login(request):
                                  'type': manager.type,
                                  'id': manager.managerId
                                  })
+
+
+def generate_verification_code(length=6):
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+
+def send_verification_email(email, verification_code):
+    subject = '[Registration Code]'
+    html_content = '''
+    <p>Your registration code is:</p>
+    <h2>{}</h2>
+    <p>Please use this code to complete your registration. The code is valid for 30 minutes.</p>
+    '''.format(verification_code)
+    text_content = 'Your registration code is: {}'.format(verification_code)
+    mail.send_mail(
+        subject=subject,
+        message=text_content,
+        from_email=EMAIL_HOST_USER,
+        recipient_list=[email],
+        html_message=html_content
+    )
+
+
+@csrf_exempt
+def registeEmail(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    email = str(request.POST.get('email'))
+    if User.objects.filter(email=email).exists():
+        return JsonResponse({'errno': 1000, 'msg': "email already register"})
+    else:
+        verification_code = generate_verification_code()
+        if RegisterCode.objects.filter(email=email):
+            registerCode = RegisterCode.objects.get(email=email)
+        else:
+            registerCode = RegisterCode(email=email)
+        registerCode.code = verification_code
+        registerCode.save()
+        send_verification_email(email, verification_code)
+        return JsonResponse({'errno': 0, 'msg': "email send success"})
