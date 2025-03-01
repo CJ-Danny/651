@@ -74,7 +74,7 @@ def send_verification_email(email, verification_code):
 
 
 @csrf_exempt
-def registeEmail(request):
+def registerEmail(request):
     if request.method != 'POST':
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})
     email = str(request.POST.get('email'))
@@ -90,3 +90,27 @@ def registeEmail(request):
         registerCode.save()
         send_verification_email(email, verification_code)
         return JsonResponse({'errno': 0, 'msg': "email send success"})
+
+
+@csrf_exempt
+def register(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    userName = str(request.POST.get('userName'))
+    password = str(request.POST.get('password'))
+    code = str(request.POST.get('code'))
+    email = str(request.POST.get('email'))
+    if not RegisterCode.objects.filter(email=email, code=code).exists():
+        return JsonResponse({'errno': 1000, 'msg': "code error!"})
+    elif User.objects.filter(email=email).exists():
+        return JsonResponse({'errno': 1000, 'msg': "user exists"})
+    else:
+        user = User(
+            userName=userName,
+            password=password,
+            type=0,
+            email=email
+        )
+        user.save()
+        RegisterCode.objects.filter(email=email, code=code).delete()
+        return JsonResponse({'errno': 0, 'msg': "register success"})
