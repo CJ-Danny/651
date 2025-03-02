@@ -3,6 +3,7 @@ import random
 
 from django.core import mail
 from django.core.mail import EmailMultiAlternatives, send_mail
+from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
@@ -138,5 +139,22 @@ def getHomeInfo(request):
         'email': user.email,
         'userID': user.userId,
         'rentList': rents
+    }
+    return JsonResponse({'errno': 0, 'data': data})
+
+
+@csrf_exempt
+def getRentInfo(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    rentId = request.POST.get('rentId')
+    rent = Rent.objects.get(rentId=rentId)
+    bills = list(Bill.objects.filter(rentID=rentId).values())
+    room = Room.objects.get(roomId=rent.roomId)
+
+    data = {
+        "rent": model_to_dict(rent),
+        "bills": bills,
+        "room": model_to_dict(room)
     }
     return JsonResponse({'errno': 0, 'data': data})
