@@ -1,0 +1,11 @@
+anyone123456
+tmux attach -t django
+ssh -i C:\Users\DANNY\Desktop\COURSE\winter\651\ECE651.pem ec2-user@15.157.62.32
+ssh ec2-user@15.157.62.32
+root password: 651team!
+
+mysql:
+root password: 651Team!
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '651Team!';
+
+nohup python manage.py runserver 0.0.0.0:8000 & >nohup.out

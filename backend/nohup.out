@@ -1,0 +1,451 @@
+Watching for file changes with StatReloader
+[01/Mar/2025 21:26:31] "POST /api/user/login HTTP/1.1" 200 270
+[01/Mar/2025 21:26:51] "POST /api/user/login HTTP/1.1" 200 270
+[01/Mar/2025 21:27:00] "POST /api/user/registerEmail HTTP/1.1" 200 48
+[01/Mar/2025 21:27:11] "POST /api/user/register HTTP/1.1" 200 37
+[01/Mar/2025 21:27:12] "POST /api/user/register HTTP/1.1" 200 37
+[01/Mar/2025 21:30:23] "OPTIONS /api/roommanage/getRoomsInfo HTTP/1.1" 200 0
+Not Found: /api/serviceman/notice
+[01/Mar/2025 21:30:23] "POST /api/serviceman/notice HTTP/1.1" 404 2587
+Not Found: /api/roommanage/getRoomsInfo
+[01/Mar/2025 21:30:23] "POST /api/roommanage/getRoomsInfo HTTP/1.1" 404 2605
+Not Found: /api/usermanage/check
+[01/Mar/2025 21:30:27] "POST /api/usermanage/check HTTP/1.1" 404 2584
+Not Found: /api/serviceman/notice
+[01/Mar/2025 21:30:27] "POST /api/serviceman/notice HTTP/1.1" 404 2587
+[01/Mar/2025 21:30:35] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:30:38] "POST /api/user/login HTTP/1.1" 200 46
+[01/Mar/2025 21:31:26] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:32:32] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:32:37] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:32:59] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:33:35] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:33:36] "POST /api/user/login HTTP/1.1" 200 46
+[01/Mar/2025 21:35:27] "POST /api/user/login HTTP/1.1" 200 46
+[01/Mar/2025 21:35:29] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:35:55] "POST /api/user/login HTTP/1.1" 200 43
+[01/Mar/2025 21:35:56] "POST /api/user/login HTTP/1.1" 200 46
+[01/Mar/2025 21:37:35] "POST /api/user/login HTTP/1.1" 200 46
+[01/Mar/2025 21:37:36] "POST /api/user/login HTTP/1.1" 200 43
+Not Found: /api/user/getInfo
+[01/Mar/2025 21:44:57] "POST /api/user/getInfo HTTP/1.1" 404 2957
+Not Found: /api/serviceman/checkUserOrder
+[01/Mar/2025 21:45:01] "POST /api/serviceman/checkUserOrder HTTP/1.1" 404 2611
+Not Found: /api/roommanage/getUserRooms
+[01/Mar/2025 21:45:01] "POST /api/roommanage/getUserRooms HTTP/1.1" 404 2605
+Not Found: /api/user/getInfo
+[01/Mar/2025 21:45:01] "POST /api/user/getInfo HTTP/1.1" 404 2957
+Not Found: /api/serviceman/checkUserOrder
+[01/Mar/2025 21:45:11] "POST /api/serviceman/checkUserOrder HTTP/1.1" 404 2611
+Not Found: /api/roommanage/getUserRooms
+[01/Mar/2025 21:45:11] "POST /api/roommanage/getUserRooms HTTP/1.1" 404 2605
+Not Found: /api/user/getInfo
+[01/Mar/2025 21:45:12] "POST /api/user/getInfo HTTP/1.1" 404 2957
+[01/Mar/2025 21:56:00] "POST /api/user/registerEmail HTTP/1.1" 200 48
+Not Found: /
+[01/Mar/2025 22:13:23] "GET / HTTP/1.1" 404 2505
+[01/Mar/2025 22:19:55] "POST /api/user/login HTTP/1.1" 200 270
+[01/Mar/2025 22:42:17] "POST /api/user/login HTTP/1.1" 200 270
+Not Found: /api/usermanage/check
+[01/Mar/2025 22:42:18] "POST /api/usermanage/check HTTP/1.1" 404 2584
+Not Found: /api/serviceman/notice
+[01/Mar/2025 22:42:18] "POST /api/serviceman/notice HTTP/1.1" 404 2587
+Not Found: /api/usermanage/check
+[01/Mar/2025 22:42:25] "POST /api/usermanage/check HTTP/1.1" 404 2584
+Not Found: /api/serviceman/notice
+[01/Mar/2025 22:42:25] "POST /api/serviceman/notice HTTP/1.1" 404 2587
+[01/Mar/2025 22:47:19] "POST /api/user/login HTTP/1.1" 200 270
+Not Found: /api/usermanage/check
+[01/Mar/2025 22:47:20] "POST /api/usermanage/check HTTP/1.1" 404 2584
+Not Found: /api/serviceman/notice
+[01/Mar/2025 22:47:20] "POST /api/serviceman/notice HTTP/1.1" 404 2587
+[01/Mar/2025 22:57:18] "POST /api/user/registerEmail HTTP/1.1" 200 48
+Not Found: /
+[01/Mar/2025 23:05:36] "GET / HTTP/1.1" 404 2505
+[01/Mar/2025 23:29:46] "POST /api/user/login HTTP/1.1" 200 270
+Not Found: /api/usermanage/check
+[01/Mar/2025 23:29:47] "POST /api/usermanage/check HTTP/1.1" 404 2584
+Not Found: /api/serviceman/notice
+[01/Mar/2025 23:29:47] "POST /api/serviceman/notice HTTP/1.1" 404 2587
+[01/Mar/2025 23:52:36] "OPTIONS /api/api/user/registerEmail HTTP/1.1" 200 0
+Not Found: /api/api/user/registerEmail
+[01/Mar/2025 23:52:36] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[01/Mar/2025 23:56:21] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[01/Mar/2025 23:56:24] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[01/Mar/2025 23:56:26] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[01/Mar/2025 23:56:26] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[01/Mar/2025 23:56:36] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[01/Mar/2025 23:57:03] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+[02/Mar/2025 00:05:07] "POST /api/user/login HTTP/1.1" 200 270
+[02/Mar/2025 00:05:14] "POST /api/user/login HTTP/1.1" 200 46
+[02/Mar/2025 00:05:18] "POST /api/user/login HTTP/1.1" 200 269
+Not Found: /api/api/user/registerEmail
+[02/Mar/2025 00:15:29] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[02/Mar/2025 00:16:07] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+[02/Mar/2025 00:16:43] "POST /api/user/registerEmail HTTP/1.1" 200 48
+Not Found: /api/api/user/registerEmail
+[02/Mar/2025 00:20:13] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[02/Mar/2025 00:20:28] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /api/api/user/registerEmail
+[02/Mar/2025 00:20:45] "POST /api/api/user/registerEmail HTTP/1.1" 404 2602
+Not Found: /
+[02/Mar/2025 01:05:16] "GET / HTTP/1.1" 404 2505
+[02/Mar/2025 01:11:54] "POST /api/user/registerEmail HTTP/1.1" 200 41
+[02/Mar/2025 01:12:23] "POST /api/user/register HTTP/1.1" 200 37
+[02/Mar/2025 01:12:29] "POST /api/user/register HTTP/1.1" 200 39
+[02/Mar/2025 01:12:55] "POST /api/user/login HTTP/1.1" 200 269
+[02/Mar/2025 01:13:42] "POST /api/user/login HTTP/1.1" 200 269
+/home/ec2-user/651/backend/room/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 01, 2025 - 21:26:27
+Django version 3.2.11, using settings 'backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.591427) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.591427) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.607074) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.607074) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.610936) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.610936) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.612239) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.612239) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.613652) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.613652) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.615183) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.615183) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.616461) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.616461) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.617785) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.617785) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.619956) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.619956) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.621279) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.621279) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.623193) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.623193) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.625097) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.625097) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.626399) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.626399) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.628216) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.628216) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.630321) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.630321) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.632588) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.632588) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.634622) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.634622) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.637017) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.637017) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.639039) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.639039) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.640702) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.640702) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.642742) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.642742) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.644483) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.644483) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.646258) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.646258) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.647564) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.647564) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.648815) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.648815) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.650281) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.650281) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.651440) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.651440) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.652530) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.652530) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.653540) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.653540) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.654819) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.654819) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.656198) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.656198) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.657173) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.657173) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.658114) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.658114) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.659307) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.659307) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.660413) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.660413) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.661460) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.661460) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.662590) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.662590) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.663754) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.663754) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.665094) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.665094) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:34:36.666447) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:34:36.666447) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+[02/Mar/2025 01:34:36] "POST /api/room/getRoomsInfo HTTP/1.1" 200 10397
+[02/Mar/2025 01:35:05] "POST /api/user/getHomeInfo HTTP/1.1" 200 288
+[02/Mar/2025 01:35:06] "POST /api/user/getHomeInfo HTTP/1.1" 200 288
+[02/Mar/2025 01:35:07] "POST /api/user/login HTTP/1.1" 200 43
+[02/Mar/2025 01:35:21] "POST /api/user/login HTTP/1.1" 200 269
+Not Found: /api/user/getInfo
+[02/Mar/2025 01:35:23] "POST /api/user/getInfo HTTP/1.1" 404 3622
+Not Found: /api/user/getInfo
+[02/Mar/2025 01:35:30] "POST /api/user/getInfo HTTP/1.1" 404 3622
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.103681) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.103681) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.114455) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.114455) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.116135) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.116135) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.117759) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.117759) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.118952) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.118952) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.120501) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.120501) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.125408) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.125408) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.127094) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.127094) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.128523) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.128523) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.129825) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.129825) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.131225) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.131225) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.143514) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.143514) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.147464) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.147464) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.151716) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.151716) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.157171) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.157171) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.161488) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.161488) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.164155) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.164155) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.177238) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.177238) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.180871) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.180871) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.185164) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.185164) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.188246) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.188246) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.190595) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.190595) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.193493) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.193493) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.194977) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.194977) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.196100) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.196100) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.197252) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.197252) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.198784) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.198784) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.200082) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.200082) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.201386) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.201386) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.203526) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.203526) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.207425) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.207425) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.209210) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.209210) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.211671) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.211671) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.213774) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.213774) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.214899) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.214899) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.215961) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.215961) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.217028) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.217028) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.218239) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.218239) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.219355) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.219355) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.startTime received a naive datetime (2025-03-02 01:35:31.220561) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Rent.endTime received a naive datetime (2025-03-02 01:35:31.220561) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+[02/Mar/2025 01:35:31] "POST /api/room/getRoomsInfo HTTP/1.1" 200 10397
+[02/Mar/2025 01:35:33] "POST /api/user/getHomeInfo HTTP/1.1" 200 288
+[02/Mar/2025 01:35:40] "POST /api/user/getRentInfo HTTP/1.1" 200 393
+[02/Mar/2025 01:44:14] "POST /api/manager/reviewRent HTTP/1.1" 200 37
+Not Found: /
+[02/Mar/2025 01:57:21] "GET / HTTP/1.1" 404 2505
+Not Found: /favicon.ico
+[02/Mar/2025 01:57:21] "GET /favicon.ico HTTP/1.1" 404 2556
