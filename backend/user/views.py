@@ -9,6 +9,7 @@ from django.http import JsonResponse
 # Create your views here.
 from backend import settings
 from backend.settings import EMAIL_HOST_USER
+from room.models import *
 from user.models import *
 from manager.models import *
 from user.token import *
@@ -114,3 +115,28 @@ def register(request):
         user.save()
         RegisterCode.objects.filter(email=email, code=code).delete()
         return JsonResponse({'errno': 0, 'msg': "register success"})
+
+
+@csrf_exempt
+def getHomeInfo(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    token = request.POST.get('token')
+    userID, type = Check(token)
+    print(userID)
+    try:
+        user = User.objects.get(userId=userID)
+    except:
+        return JsonResponse({'errno': 1002, 'msg': 'token error'})
+    rents = list(Rent.objects.filter(userId=userID).order_by('-applyTime').values())
+    for rent in rents:
+        room = Room.objects.get(roomId=rent['roomId'])
+        rent['roomNumber'] = room.number
+        rent['roomId'] = room.roomId
+    data = {
+        'userName': user.userName,
+        'email': user.email,
+        'userID': user.userId,
+        'rentList': rents
+    }
+    return JsonResponse({'errno': 0, 'data': data})

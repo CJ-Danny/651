@@ -5,4 +5,5 @@ urlpatterns = [
     path('login', login),
     path('registerEmail', registerEmail),
     path('register', register),
+    path('getHomeInfo', getHomeInfo),
 ]
