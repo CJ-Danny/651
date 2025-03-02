@@ -6,5 +6,6 @@ urlpatterns = [
     path('registerEmail', registerEmail),
     path('register', register),
     path('getHomeInfo', getHomeInfo),
-    path('getRentInfo', getRentInfo)
+    path('getRentInfo', getRentInfo),
+    path('applyRoom', applyRoom),
 ]

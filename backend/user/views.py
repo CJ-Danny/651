@@ -124,7 +124,6 @@ def getHomeInfo(request):
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})
     token = request.POST.get('token')
     userID, type = Check(token)
-    print(userID)
     try:
         user = User.objects.get(userId=userID)
     except:
@@ -158,3 +157,28 @@ def getRentInfo(request):
         "room": model_to_dict(room)
     }
     return JsonResponse({'errno': 0, 'data': data})
+
+
+@csrf_exempt
+def applyRoom(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    token = request.POST.get('token')
+    roomId = request.POST.get('roomId')
+    startTime = request.POST.get('startTime')
+    endTime = request.POST.get('endTime')
+    userID, type = Check(token)
+    try:
+        user = User.objects.get(userId=userID)
+    except:
+        return JsonResponse({'errno': 1002, 'msg': 'token error'})
+    rent = Rent(
+        userId=user.userId,
+        roomId=roomId,
+        status=0,
+        startTime=startTime,
+        endTime=endTime,
+        applyTime=datetime.datetime.now()
+    )
+    rent.save()
+    return JsonResponse({'errno': 0, 'msg': "apply success"})
