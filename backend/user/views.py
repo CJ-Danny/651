@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from backend import settings
 from backend.settings import EMAIL_HOST_USER
 from room.models import *
+from service.models import *
 from user.models import *
 from manager.models import *
 from user.token import *
@@ -181,4 +182,27 @@ def applyRoom(request):
         applyTime=datetime.datetime.now()
     )
     rent.save()
+    return JsonResponse({'errno': 0, 'msg': "apply success"})
+
+
+@csrf_exempt
+def applyOrder(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    token = request.POST.get('token')
+    roomId = request.POST.get('roomId')
+    description = request.POST.get('description')
+    userID, type = Check(token)
+    try:
+        user = User.objects.get(userId=userID)
+    except:
+        return JsonResponse({'errno': 1002, 'msg': 'token error'})
+    order = Order(
+        userID=user.userId,
+        roomID=roomId,
+        status=0,
+        description=description,
+        submitTime=datetime.datetime.now()
+    )
+    order.save()
     return JsonResponse({'errno': 0, 'msg': "apply success"})
