@@ -21,3 +21,15 @@ def getRentInfo(request):
         rents = Rent.objects.filter(status=status).order_by("-applyTime")
     rents = list(rents.values())
     return JsonResponse({'errno': 0, 'data': rents})
+
+
+@csrf_exempt
+def reviewRent(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    rentId = request.POST.get('rentId')
+    status = request.POST.get('status')
+    rent = Rent.objects.get(rentId=rentId)
+    rent.status = status
+    rent.save()
+    return JsonResponse({'errno': 0, 'msg': "review success"})
