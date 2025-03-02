@@ -31,7 +31,7 @@ jobs:
         run: |
           python manage.py test
 
-  frontend:
+  fronted:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -42,17 +42,17 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install frontend dependencies
-        working-directory: ./frontend
+      - name: Install fronted dependencies
+        working-directory: ./fronted
         run: |
           npm install
 
-      - name: Build frontend
-        working-directory: ./frontend
+      - name: Build fronted
+        working-directory: ./fronted
         run: |
           npm run build
 
-      - name: Run frontend tests
-        working-directory: ./frontend
+      - name: Run fronted tests
+        working-directory: ./fronted
         run: |
           npm run test
