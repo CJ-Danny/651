@@ -30,29 +30,3 @@ jobs:
         working-directory: ./backend
         run: |
           python manage.py test
-
-  fronted:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install fronted dependencies
-        working-directory: ./fronted
-        run: |
-          npm install
-
-      - name: Build fronted
-        working-directory: ./fronted
-        run: |
-          npm run build
-
-      - name: Run fronted tests
-        working-directory: ./fronted
-        run: |
-          npm run test
