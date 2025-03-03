@@ -1,16 +1,12 @@
 <template>
   <div class="app">
     <li id="list1" @click="toList1()">
-      <img class="list12" src="../../assets/管理员端/人员.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 7px;">Personal Info</p>
+      <img class="list12" src="../../assets/管理员端/icon3.png" /><br>
+      <p style="font-size: 14px;position: relative;left: 7px;">我的工单</p>
     </li>
     <li id="list2" @click="toList2()">
       <img class="list12" src="../../assets/管理员端/icon2.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 10px;">Maintenance Requests</p>
-    </li>
-    <li id="list3" @click="toList3()">
-      <img class="list12" src="../../assets/管理员端/icon7.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 10px;">Rental Request</p>
+      <p style="font-size: 14px;position: relative;left: 15px;">知识库</p>
     </li>
     <div class="card" id="card">
       <div class="upradius"></div>
@@ -26,63 +22,47 @@ export default {
     return {
       card: undefined,
       list1: undefined,
-      list2: undefined,
-      list3: undefined,
-      
+      // list2: undefined,
       index: 1,
     }
   },
   methods: {
-   
-    setCardPosition() {
-      if (this.index === 1) {
-        this.card.style.top = "-50px"
-      } else if (this.index === 2) {
-        this.card.style.top = "80px"
-      }
-      else if (this.index === 3) {
-        this.card.style.top = "208px"
-      }
-    },
-    
+    // 组件数据初始化调用函数 TODO: 用户端
     init() {
       // console.log(this.$store.state.userState)
       // console.log(this.$store.state.userType)
-      this.card = document.getElementById("card")
       this.list1 = document.getElementById("list1")
       this.list2 = document.getElementById("list2")
-      this.list3 = document.getElementById("list3"); 
-      var str = this.$route.path.split("/")[3]
-      if (str == "userinfo") {
+      this.card = document.getElementById("card")
+      var str = this.$route.path.split("/")[4]
+      if (str.includes("repairlist")) {
         this.index = 1
-      } else if (str == "repairment") {
+      } else if (str === "knowledge") {
         this.index = 2
-      }
-      else if (str === "room") { 
-        this.index = 3;
       }
       this.setCardPosition()
     },
- 
     toList1() {
       this.index = 1
       this.setCardPosition();
       this.card.style.transition = "all 700ms ease 0s"
-      this.$router.push('/app/client/userinfo')
+      this.$router.push({ path: "/app/manager/repair/repairlist", query: { type: "0" } })
     },
-   
+    //设置蓝色卡片的位置
+    setCardPosition() {
+      if (this.index === 1) {
+        this.card.style.top = "-50px"
+      } else if (this.index === 2) {
+        this.card.style.top = "44px"
+      }
+    },
+    // 去房间管理界面
     toList2() {
       this.index = 2
       this.setCardPosition();
       this.card.style.transition = "all 700ms ease 0s"
-      this.$router.push('/app/client/repairment')
+    this.$router.push('/app/manager/repair/knowledge')
     },
-    toList3() {
-    this.index = 3;
-    this.setCardPosition();
-    this.card.style.transition = "all 700ms ease 0s";
-    this.$router.push('/app/client/room'); 
-  },
   },
   mounted() {
     this.init();
@@ -113,14 +93,6 @@ export default {
   left: -2px;
 }
 
-#list3 {
-  margin-left: 4px;
-  cursor: pointer;
-  position: relative;
-  top: 100px;
-  left: -2px;
-}
-
 li {
   color: #fff;
   position: relative;
@@ -132,7 +104,7 @@ li p {
   position: relative;
   z-index: 3;
   margin: 0;
- 
+  /* z-index只有在position为relative, absolute 或者 fixed是才有效 */
 }
 
 li img {

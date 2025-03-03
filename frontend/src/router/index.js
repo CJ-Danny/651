@@ -3,12 +3,12 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import store from '@/store/index' 
 
-let originPush =  VueRouter.prototype.push;  //备份原push方法
+let originPush =  VueRouter.prototype.push;  
 
 VueRouter.prototype.push = function (location, resolve, reject){
-    if (resolve && reject) {    //如果传了回调函数，直接使用
+    if (resolve && reject) {    
         originPush.call(this, location, resolve, reject);
-    }else {                     //如果没有传回调函数，手动添加
+    }else {                     
         originPush.call(this, location, ()=>{}, ()=>{});
     }
 }
@@ -27,6 +27,16 @@ const routes = [
     component: () => import('../views/AppView'),
 
     children: [
+      
+      
+     
+      
+      
+      {
+        path: 'client/room',
+        name: 'clientRoom',
+        component: () => import('../views/client/RoomDiagram.vue') 
+      },
       {
         path: 'client/repairment',
         name: 'repairment',
@@ -69,31 +79,31 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else if(url === 'room' || url === 'statistics' || url === 'peopleManagement' || url === 'repairTopIndex' || url === 'app') {
-    // 二级路由守护
+    
     next(false)
   } else if(url === 'rooms' || url === 'repair' || url === 'visitor' || url === 'customerManagement' || url === 'managerManagement' || url === 'maintainerManagement' || url === 'rentRequests' || url === 'roomsDetail') {
-    // 管理员界面路由守护
+    
     if(store.state.userState === 1 && store.state.userType === 1) {
       next();
     } else {
       next(false)
     }
   } else if(url === 'repairList') {
-    // 维修人员和管理员路由守护
+    
     if(store.state.userState === 1) {
       next();
     } else {
       next(false)
     }
   } else if(url === 'repairment' || url === 'userInfo'){
-    // 客户路由守护
+    
     if(store.state.userState === 0) {
       next();
     } else {
       next(false)
     }
   }else {
-    // console.log('其它')
+    
     next()
   }
 })
