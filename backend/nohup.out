@@ -13375,3 +13375,48 @@ March 02, 2025 - 01:28:02
 Django version 3.2.11, using settings 'backend.settings'
 Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/ec2-user/miniconda3/envs/651/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1416: RuntimeWarning: DateTimeField Order.submitTime received a naive datetime (2025-03-02 23:40:41.310999) while time zone support is active.
+  warnings.warn("DateTimeField %s received a naive datetime (%s)"
+[02/Mar/2025 23:40:41] "POST /api/user/applyOrder HTTP/1.1" 200 36
+Not Found: /api/usermanage/check
+[02/Mar/2025 23:41:03] "POST /api/usermanage/check HTTP/1.1" 404 2584
+Not Found: /
+[03/Mar/2025 00:14:06] "GET / HTTP/1.1" 404 2505
+Not Found: /aaa9
+[03/Mar/2025 00:27:51] "GET /aaa9 HTTP/1.1" 404 2535
+Not Found: /aab8
+[03/Mar/2025 00:27:54] "GET /aab8 HTTP/1.1" 404 2535
+Not Found: /
+[03/Mar/2025 00:27:59] "GET / HTTP/1.1" 404 2505
+Not Found: /
+[03/Mar/2025 01:52:03] "GET / HTTP/1.0" 404 2505
+[03/Mar/2025 01:55:18] code 400, message Bad request version ('À\x14À')
+[03/Mar/2025 01:55:18] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[03/Mar/2025 01:55:18] code 400, message Bad request version ('À\x14À')
+[03/Mar/2025 01:55:18] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+Not Found: /
+[03/Mar/2025 01:55:19] "GET / HTTP/1.1" 404 2505
+Not Found: /login
+[03/Mar/2025 01:55:19] "GET /login HTTP/1.1" 404 2538
+[03/Mar/2025 01:55:47] "POST /api/user/getHomeInfo HTTP/1.1" 200 3503
+Not Found: /api/serviceman/checkUserOrder
+[03/Mar/2025 01:55:47] "POST /api/serviceman/checkUserOrder HTTP/1.1" 404 2611
+Not Found: /api/roommanage/getUserRooms
+[03/Mar/2025 01:55:47] "POST /api/roommanage/getUserRooms HTTP/1.1" 404 2605
+[03/Mar/2025 01:55:48] "POST /api/user/getHomeInfo HTTP/1.1" 200 3503
+Not Found: /api/serviceman/checkUserOrder
+[03/Mar/2025 01:55:49] "POST /api/serviceman/checkUserOrder HTTP/1.1" 404 2611
+Not Found: /api/roommanage/getUserRooms
+[03/Mar/2025 01:55:49] "POST /api/roommanage/getUserRooms HTTP/1.1" 404 2605
+[03/Mar/2025 01:55:50] "POST /api/user/getHomeInfo HTTP/1.1" 200 3503
+/home/ec2-user/651/backend/user/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 02, 2025 - 23:40:11
+Django version 3.2.11, using settings 'backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.

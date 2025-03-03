@@ -9,4 +9,3 @@ root password: 651Team!
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '651Team!';
 
 nohup python manage.py runserver 0.0.0.0:8000 & >nohup.out
-nohup  npm run dev & >nohup.out
