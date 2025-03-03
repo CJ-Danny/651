@@ -186,6 +186,20 @@ def applyRoom(request):
 
 
 @csrf_exempt
+def getOrders(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    token = request.POST.get('token')
+    userID, type = Check(token)
+    try:
+        user = User.objects.get(userId=userID)
+    except:
+        return JsonResponse({'errno': 1002, 'msg': 'token error'})
+    orders = list(Order.objects.filter(userID=user.userId).values())
+    return JsonResponse({'errno': 0, 'data': orders})
+
+
+@csrf_exempt
 def applyOrder(request):
     if request.method != 'POST':
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})

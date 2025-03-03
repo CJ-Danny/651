@@ -8,5 +8,6 @@ urlpatterns = [
     path('getHomeInfo', getHomeInfo, name='getHomeInfo'),
     path('getRentInfo', getRentInfo, name='getRentInfo'),
     path('applyRoom', applyRoom, name='applyRoom'),
+    path('getOrders', getOrders, name='getOrders'),
     path('applyOrder', applyOrder, name='applyOrder'),
 ]
