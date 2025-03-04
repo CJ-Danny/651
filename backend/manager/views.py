@@ -20,6 +20,13 @@ def getRentInfo(request):
     else:
         rents = Rent.objects.filter(status=status).order_by("-applyTime")
     rents = list(rents.values())
+    for rent in rents:
+        if rent['status'] == 0:
+            rent['status'] = 'pending review'
+        elif rent['status'] == 1:
+            rent['status'] = 'approve'
+        else:
+            rent['status'] = 'terminal'
     return JsonResponse({'errno': 0, 'data': rents})
 
 
