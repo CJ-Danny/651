@@ -56,10 +56,10 @@
                   </template>
                 </el-table-column>
 
-                <el-table-column label="Status">
+                <el-table-column label="Status" width="200" align="center">
                   <template slot-scope="scope">
                     <div style="cursor: default;">
-                    <el-tag :type="getStatusType(scope.row.status)">
+                    <el-tag :type="getStatusType(scope.row.status)" style="width: 100px; text-align: center;">
                       {{ getStatusText(scope.row.status) }}
                     </el-tag>
                   </div>
