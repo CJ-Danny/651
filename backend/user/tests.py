@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from room.models import *
 from .models import *
+from user.token import *
 
 
 # Create your tests here.
@@ -111,7 +112,68 @@ class GetRentInfoTest(TestCase):
         self.assertEqual(response.json()['data']['rent']['rentId'], self.rent.rentId)
 
     def test_get_rent_info_wrong_method(self):
-        response = self.client.get(reverse('getRentInfo'))  # 使用 GET 请求
+        response = self.client.get(reverse('getRentInfo'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['errno'], 1000)
         self.assertEqual(response.json()['msg'], 'wrong method')
+
+
+class ApplyRoomTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+        self.room = Room.objects.create(
+            roomId=1,
+            number="101",
+            name="Deluxe Room",
+            imgUrl="http://example.com/image.jpg",
+            floor="1",
+            price=5000,
+            area="50"
+        )
+
+        self.user = User.objects.create(
+            userId=123,
+            userName="danny",
+            password="test",
+            type=1,
+            email="test@gmail.com"
+        )
+
+        self.token = GetToken(self.user.email, self.user.userId, self.user.type)
+        self.token = self.token.decode('utf-8')
+
+    def test_apply_room_success(self):
+        response = self.client.post(reverse('applyRoom'), {
+            'token': self.token,
+            'roomId': self.room.roomId,
+            'startTime': timezone.now(),
+            'endTime': timezone.now() + timezone.timedelta(days=30)
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 0)
+        self.assertEqual(response.json()['msg'], "apply success")
+        self.assertTrue(Rent.objects.filter(userId=self.user.userId, roomId=self.room.roomId).exists())
+
+    def test_apply_room_wrong_method(self):
+        response = self.client.get(reverse('applyRoom'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 1000)
+        self.assertEqual(response.json()['msg'], "wrong method")
+
+    def test_apply_room_invalid_token(self):
+        def mock_check():
+            return None, None
+
+        with self.settings(CHECK_FUNCTION=mock_check):
+            response = self.client.post(reverse('applyRoom'), {
+                'token': 'invalid_token',
+                'roomId': self.room.roomId,
+                'startTime': timezone.now(),
+                'endTime': timezone.now() + timezone.timedelta(days=30)
+            })
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json()['errno'], 1002)
+            self.assertEqual(response.json()['msg'], 'token error')
