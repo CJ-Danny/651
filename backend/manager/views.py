@@ -24,7 +24,7 @@ def getRentInfo(request):
         if rent['status'] == 0:
             rent['status'] = 'pending review'
         elif rent['status'] == 1:
-            rent['status'] = 'approve'
+            rent['status'] = 'approved'
         else:
             rent['status'] = 'terminal'
     return JsonResponse({'errno': 0, 'data': rents})

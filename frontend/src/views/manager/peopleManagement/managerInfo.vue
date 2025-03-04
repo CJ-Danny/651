@@ -43,7 +43,7 @@ border-top-left-radius: 20px;border-top-right-radius: 20px;display: flex;flex-di
           :data="tableData.slice((table_page - 1) * 7, table_page * 7)"
           style="width: 42vw;margin-left: 2.5vw;margin-top: 2vh">
         <el-table-column
-            label="序号"
+            label="Id"
             width="130">
           <template slot-scope="scope">
             {{scope.$index+1}}
@@ -51,13 +51,13 @@ border-top-left-radius: 20px;border-top-right-radius: 20px;display: flex;flex-di
           </template>
         </el-table-column>
         <el-table-column
-            label="姓名"
+            label="Name"
             prop="trueName"
             width="180">
 
         </el-table-column>
         <el-table-column
-            label="联系电话"
+            label="Phone Number"
             prop="phoneNumber"
             width="280">
 

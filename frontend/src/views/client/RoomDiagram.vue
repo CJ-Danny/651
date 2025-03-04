@@ -8,7 +8,7 @@
     :key="floorInfo.floor" 
     class="floor-card"
   >
-    <el-aside width="8%" class="floor-label"> {{ floorInfo.floor }} floor </el-aside>
+    <el-aside width="10%" class="floor-label"> Floor {{ floorInfo.floor }} </el-aside>
     <el-main style="line-height: 0; padding: 0">
      
       <div 
@@ -46,8 +46,8 @@
                 {{ floorInfo.floor }} floor · {{ roomList[roomIdx].roomNumber }} ·
                 {{ roomList[roomIdx].roomName }}
               </div>
-              <div>area：{{ roomList[roomIdx].area }} m²</div>
-              <div>fees：{{ roomList[roomIdx].price }} CAD/month</div>
+              <div>area: {{ roomList[roomIdx].area }} </div>
+              <div>fees: {{ roomList[roomIdx].price }} CAD/month</div>
             </template>
             <div :style="roomCardStyle(roomIdx)" @click="selectRoom($event, roomIdx)" class="room-card">
               {{ roomList[roomIdx].roomNumber }}
@@ -75,10 +75,10 @@
             <span class="legend-icon" style="background: #ffa034"></span><span>Under lease</span>
           </div>
           <div class="legend">
-            <span class="legend-icon" style="background: #e03d5e"></span><span>Under lease,Property fees unpaid</span>
+            <span class="legend-icon" style="background: #e03d5e"></span><span>Under lease, Property fees unpaid</span>
           </div>
           <div class="legend">
-            <span class="legend-icon" style="background: #7ccafb"></span><span>Under lease,Under repair</span>
+            <span class="legend-icon" style="background: #7ccafb"></span><span>Under lease, Under repair</span>
           </div>
         </div>
         <div v-else>
@@ -92,10 +92,10 @@
             <span class="legend-icon" style="background: #f3d19e"></span><span>Under lease</span>
           </div>
           <div class="legend">
-            <span class="legend-icon" style="background: #d77689"></span><span>Under lease,Property fees unpaid</span>
+            <span class="legend-icon" style="background: #d77689"></span><span>Under lease, Property fees unpaid</span>
           </div>
           <div class="legend">
-            <span class="legend-icon" style="background: #a8deff"></span><span>Under lease,Under repair</span>
+            <span class="legend-icon" style="background: #a8deff"></span><span>Under lease, Under repair</span>
           </div>
         </div>
       </div>
@@ -163,25 +163,25 @@
         </div>
         <div>
           <span class="el-icon-s-data" style="margin-right: 15px"></span>
-          <span>{{ selectedRoom.floor }} floor · {{ selectedRoom.roomNumber }} room</span>
+          <span>Floor {{ selectedRoom.floor }} · Room {{ selectedRoom.roomNumber }} </span>
         </div>
         <div>
           <span class="el-icon-s-home" style="margin-right: 15px"></span>
-          <span>area：{{ selectedRoom.area }} m²</span>
+          <span>Area: {{ selectedRoom.area }} </span>
         </div>
         <div>
           <span class="el-icon-s-order" style="margin-right: 15px"></span>
-          <span>fees：{{ selectedRoom.price }} CAD/month</span>
+          <span>Fees: {{ selectedRoom.price }} CAD/Month</span>
         </div>
         <div v-if="selectedRoom.status !== 0">
           <div>
             <span class="el-icon-s-custom" style="margin-right: 15px"></span>
-            <span>Renter：{{ selectedRoom.trueName }}</span>
+            <span>Renter: {{ selectedRoom.trueName }}</span>
           </div>
           <div>
             <span class="el-icon-s-flag" style="margin-right: 15px"></span>
             <span
-              >Rental Duration：<br />
+              >Rental Duration: <br />
               {{ selectedRoom.startTime.substring(0, 10) }} - {{ selectedRoom.endTime.substring(0, 10) }}
             </span>
           </div>
