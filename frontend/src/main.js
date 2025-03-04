@@ -17,7 +17,7 @@ Vue.use(ElementUI);
 Vue.prototype.$axios = axios;
 Vue.prototype.$echarts = echarts;
 
-axios.defaults.baseURL = 'http://15.157.62.32:8000/api/';
+axios.defaults.baseURL = 'http://18.117.136.172/api/';
 
 new Vue({
   router,
