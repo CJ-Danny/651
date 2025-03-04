@@ -168,7 +168,7 @@ def applyRoom(request):
     roomId = request.POST.get('roomId')
     startTime = request.POST.get('startTime')
     endTime = request.POST.get('endTime')
-    userID, type = Check(token)
+    userID, _ = Check(token)
     try:
         user = User.objects.get(userId=userID)
     except:

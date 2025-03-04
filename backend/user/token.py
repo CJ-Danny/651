@@ -14,5 +14,5 @@ def Check(token):
     try:
         s = decode(token, 'secret_key', algorithms='HS256')
     except:
-        return -1
+        return -1, -1
     return s.get('id', -1), s.get('type', -1)
