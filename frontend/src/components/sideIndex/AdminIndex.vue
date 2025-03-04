@@ -16,11 +16,11 @@
     </li>
     <li id="list4" @click="toList4()">
       <img class="list4" src="../../assets/管理员端/icon2.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 20px;">Stats</p>
+      <p style="font-size: 14px;position: relative;left: 20px;">Repair</p>
     </li>
     <li id="list5" @click="toList5()">
       <img class="list12" src="../../assets/管理员端/icon6.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 15px;">Libary</p>
+      <p style="font-size: 14px;position: relative;left: 15px;">Library</p>
     </li>
     <div class="card" id="card">
       <div class="upradius"></div>
