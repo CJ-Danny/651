@@ -9,75 +9,185 @@
     <div style="float:right;margin-right: 50px;margin-top: -70px"><img src="../../assets/repair/logo.png"></div>
 
     <div style="float:right;margin: 40px -8vw 20px 0">
-      <el-button type="primary" plain @click="dialogFormVisible = true;">Submit new repair orders</el-button>
+ 
+    <el-button type="primary" plain @click="openRepairDialog">Submit new repair orders</el-button>
+  </div>
+
+    <div>
+      <el-dialog title="Submit new repair orders" :visible.sync="dialogFormVisible">
+        <el-form :model="form" :rules="rules">
+          <el-form-item label="roomNumber" :label-width="formLabelWidth" prop="roomNumber">
+            <el-select v-model="form.roomID" placeholder="Please Select">
+              <el-option
+                  v-for="item in roomOptions"
+                  :key="item.roomId"
+                  :label="item.roomNumber"
+                  :value="item.roomId">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Contact name" :label-width="formLabelWidth" prop="contactPerson">
+            <el-input v-model="form.contactPerson" placeholder="Please enter"></el-input>
+          </el-form-item>
+          <el-form-item label="phone number" :label-width="formLabelWidth" prop="contactNumber">
+            <el-input v-model="form.contactNumber" placeholder="Please enter"></el-input>
+          </el-form-item>
+          <el-form-item label="Expected time" :label-width="formLabelWidth" prop="startDate">
+            <el-date-picker
+                v-model="form.startDate"
+                type="date"
+                format="yyyy . MM . dd"
+                value-format="yyyy-MM-dd"
+                placeholder="startDate"
+                :picker-options="pickerOptions"
+            />
+            <el-select v-model="form.startTime" placeholder="Please Select" style="margin-left: 20px">
+              <el-option label="morning" value="08:00:00"/>
+              <el-option label="afternoon" value="14:00:00"/>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Alternative time" :label-width="formLabelWidth" prop="date2">
+            <el-date-picker
+                v-model="form.date2"
+                type="date"
+                format="yyyy . MM . dd"
+                value-format="yyyy-MM-dd"
+                placeholder="startDate"
+                :picker-options="pickerOptions"
+            />
+            <el-select v-model="form.time2" placeholder="Please Select" style="margin-left: 20px">
+              <el-option label="morning" value="08:00:00"/>
+              <el-option label="afternoon" value="14:00:00"/>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Description" :label-width="formLabelWidth" prop="description">
+            <el-input type="textarea" v-model="form.description" :rows="5" placeholder="Describe the problem"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="createOrder">Confirm</el-button>
+        </div>
+      </el-dialog>
+    </div>
+
+     <div>
+      <el-dialog title="Re-fill the repair order" :visible.sync="returnDialogVis">
+        <el-form :model="returnForm" :rules="rules2">
+          <el-form-item label="roomNumber" :label-width="formLabelWidth" prop="roomNumber">
+            <div>{{this.tempOrder.roomNumber}}</div>
+          </el-form-item>
+          <el-form-item label="Contact name" :label-width="formLabelWidth" prop="contactPerson">
+            <div>{{this.tempOrder.contactName}}</div>
+          </el-form-item>
+          <el-form-item label="phone number" :label-width="formLabelWidth" prop="contactNumber">
+            <div>{{this.tempOrder.contactPhone}}</div>
+          </el-form-item>
+          <el-form-item label="Expected time" :label-width="formLabelWidth" prop="startDate">
+            <el-date-picker
+                v-model="returnForm.startDate"
+                type="date"
+                format="yyyy . MM . dd"
+                value-format="yyyy-MM-dd"
+                placeholder="startDate"
+                :picker-options="pickerOptions"
+            />
+            <el-select v-model="returnForm.startTime" placeholder="Please Select" style="margin-left: 20px">
+              <el-option label="morning" value="08:00:00"/>
+              <el-option label="afternoon" value="14:00:00"/>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Alternative time" :label-width="formLabelWidth" prop="date2">
+            <el-date-picker
+                v-model="returnForm.date2"
+                type="date"
+                format="yyyy . MM . dd"
+                value-format="yyyy-MM-dd"
+                placeholder="startDate"
+                :picker-options="pickerOptions"
+            />
+            <el-select v-model="returnForm.time2" placeholder="Please Select" style="margin-left: 20px">
+              <el-option label="morning" value="08:00:00"/>
+              <el-option label="afternoon" value="14:00:00"/>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Description" :label-width="formLabelWidth" prop="description">
+            <div>{{this.tempOrder.description}}</div>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="returnDialogVis = false">Cancel</el-button>
+          <el-button type="primary" @click="resubmitOrder">Resubmit</el-button>
+        </div>
+      </el-dialog>
+    </div>
+
+    <div>
+      <el-dialog title="View repair details" :visible.sync="detailDialog" top="2%">
+        <el-form>
+          <el-form-item label="roomNumber" :label-width="formLabelWidth">
+            <div>{{this.tempOrder.roomNumber}}</div>
+          </el-form-item>
+          <el-form-item label="repairman's name" :label-width="formLabelWidth">
+            <div>{{this.tempOrder.solvePerson}}</div>
+          </el-form-item>
+          <el-form-item label="repair time" :label-width="formLabelWidth">
+            <div>{{this.tempOrder.solveTime}}</div>
+          </el-form-item>
+          <el-form-item label="solution" :label-width="formLabelWidth">
+            <div>{{this.tempOrder.solution}}</div>
+          </el-form-item>
+          <el-form-item label="Repair Order" :label-width="formLabelWidth">
+            <div><img :src="this.tempOrder.pic" style="width: 90%"></div>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="detailDialog = false">Close</el-button>
+        </div>
+      </el-dialog>
     </div>
 
     <div>
       <el-table
-          :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
-          stripe
-          style="width: 95%"
-          empty-text="No rental history available">
-        <el-table-column
-            label="No." align="center"
-            width="100">
-          <template slot-scope="scope">
-            <span>{{ scope.$index + pageSize * (currentPage- 1) + 1 }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-            prop="submitTime"
-            label="Submission Time"
-            sortable
-            width="150">
-        </el-table-column>
-        <el-table-column
-            prop="roomNumber"
-            label="Room"
-            min-width="5"
-            align="center"
-        >
-        </el-table-column>
-        <el-table-column
-            prop="status"
-            label="Status"
-            width="100"
-            align="center"
-        >
-          <template v-slot="scope">
-            <div v-if="scope.row.status===0"><el-button type="info" plain size="small"> 未处理</el-button></div>
-            <div v-if="scope.row.status===1"><el-button type="warning" plain size="small"> 待维修</el-button></div>
-            <div v-if="scope.row.status===2||scope.row.status===4"><el-button type="success" plain size="small" @click="openDetail(scope.row)"> 已完成—详情</el-button></div>
-            <div v-if="scope.row.status===3"><el-button type="danger" plain size="small"> 时间不可用</el-button></div>
-          </template>
-        </el-table-column>
-        <el-table-column
-            prop="solvePerson"
-            label="Maintenance Worker"
-            min-width="10"
-            align="center"
-        >
-        </el-table-column>
-        <el-table-column
-            prop="startTime"
-            label="Estimated Repair Time"
-            width="300"
-            align="center"
-        >
-        </el-table-column>
-      </el-table>
-
-      <div class="pageDiv">
-        <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5,10, 15, 20]"
-            :page-size="10"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="this.tableData.length">
-        </el-pagination>
-      </div>
+      :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+      stripe
+      style="width: 95%"
+      empty-text="No rental history available">
+    <el-table-column
+        label="No." align="center"
+        width="100">
+      <template slot-scope="scope">
+        <span>{{ scope.$index + pageSize * (currentPage- 1) + 1 }}</span>
+      </template>
+    </el-table-column>
+    <el-table-column
+    prop="submitTime"
+      label="Submission Time"
+      sortable
+      width="180"
+      :formatter="formatDateTime">
+    </el-table-column>
+    <el-table-column
+        prop="roomNumber"
+        label="Room"
+        min-width="5"
+        align="center"
+    >
+    </el-table-column>
+    <el-table-column
+        prop="status"
+        label="Status"
+        width="100"
+        align="center"
+    >
+      <template v-slot="scope">
+        <div v-if="scope.row.status===0"><el-button type="info" plain size="small"> Unprocessed</el-button></div>
+        <div v-if="scope.row.status===1"><el-button type="warning" plain size="small"> Waiting</el-button></div>
+        <div v-if="scope.row.status===2||scope.row.status===4"><el-button type="success" plain size="small" @click="openDetail(scope.row)"> Complete</el-button></div>
+        <div v-if="scope.row.status===3"><el-button type="danger" plain size="small"> Time unavailable</el-button></div>
+      </template>
+    </el-table-column>
+  </el-table>
     </div>
   </div>
 </template>
@@ -120,12 +230,12 @@ export default {
       formLabelWidth: '130px',
       pickerOptions: {
         shortcuts: [{
-          text: '今天',
+          text: 'today',
           onClick(picker) {
             picker.$emit('pick', new Date());
           }
         }, {
-          text: '明天',
+          text: 'tomorrow',
           onClick(picker) {
             const date = new Date();
             date.setTime(date.getTime() + 3600 * 1000 * 24);
@@ -136,24 +246,24 @@ export default {
       },
       rules: {
         roomNumber: [
-          { required: true, message: '请选择需要维修的房间号', trigger: 'blur' }
+          { required: true, message: 'Please Select room number', trigger: 'blur' }
         ],
         startDate: [
-          { type: 'date', required: true, message: '请选择日期', trigger: 'blur' }
+          { type: 'date', required: true, message: 'Please Select date', trigger: 'blur' }
         ],
         date2: [
-          { type: 'date', required: true, message: '请选择日期', trigger: 'blur' }
+          { type: 'date', required: true, message: 'Please Select date', trigger: 'blur' }
         ],
         description: [
-          { required: true, message: '请描述您的问题', trigger: 'blur' }
+          { required: true, message: 'Describe your problem', trigger: 'blur' }
         ],
       },
       rules2: {
         startDate: [
-          { type: 'date', required: true, message: '请选择日期', trigger: 'blur' }
+          { type: 'date', required: true, message: 'Please Select date', trigger: 'blur' }
         ],
         date2: [
-          { type: 'date', required: true, message: '请选择日期', trigger: 'blur' }
+          { type: 'date', required: true, message: 'Please Select date', trigger: 'blur' }
         ],
       }
     }
@@ -164,34 +274,18 @@ export default {
     formData.append("token", this.$store.state.token);
     this.$axios({
       method: 'post',
-      url: '/serviceman/checkUserOrder',
+      url: 'user/getOrders',
       data: formData
     })
-        .then((res) => {
+    .then((res) => {
           if (res.data.errno === 0) {
-            // window.alert(JSON.stringify(res.data))
-            this.tableData=res.data.data;
-            this.form.contactPerson=res.data.trueName;
-            this.form.contactNumber=res.data.phoneNumber;
-            for(var i=0;i<this.tableData.length;i++){
-              if(this.tableData[i].status===0) {
-                this.tableData[i].solvePerson="-";
-                this.tableData[i].startTime="-";
-                this.tableData[i].feedback="-";
-                this.tableData[i].managePhoneNumber="-";
-              }
-
-              if(this.tableData[i].status===0||this.tableData[i].status===1){
-                this.tableData[i].solution="-";
-              }
-
-              if(this.tableData[i].status===3){
-                this.tableData[i].solvePerson="-";
-                this.tableData[i].startTime="-";
-                this.tableData[i].managePhoneNumber="-";
-                this.tableData[i].solution="-";
-              }
-            }
+            this.tableData = res.data.data.map(item => ({
+              ...item,
+              roomNumber: `Room ${item.roomID}`, 
+              
+              solvePerson: "-", 
+              startTime: "-"  
+            }));
           } else {
             console.log(res.data);
           }
@@ -201,24 +295,50 @@ export default {
         });
 
 
-    this.$axios({
-      method: 'post',
-      url: '/roommanage/getUserRooms',
-      data: formData
-    })
-        .then((res) => {
-          if (res.data.errno === 0) {
-            this.roomOptions=res.data.data;
-          } else {
-            console.log(res.data);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+   
   },
 
   methods: {
+    formatDateTime(row, column, cellValue) {
+      const date = new Date(cellValue);
+      return date.toLocaleString('zh-CN', { 
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false 
+      }).replace(/\//g, '-');
+    },
+    openRepairDialog() {
+      this.dialogFormVisible = true;
+      this.fetchRoomOptions(); 
+    },
+    
+    fetchRoomOptions() {
+  const formData = new FormData();
+  formData.append("token", this.$store.state.token);
+  
+  this.$axios({
+    method: 'post',
+    url: 'user/getHomeInfo',
+    data: formData
+  })
+  .then((res) => {
+    if (res.data.errno === 0) {
+      this.roomOptions = res.data.data.rentList; 
+      console.log("Successful:", this.roomOptions);
+    } else {
+      this.$message.error("Failed to load room data");
+    }
+  })
+  .catch((err) => {
+    console.log("Fail:", err);
+    this.$message.error("Network error");
+  });
+},
     handleSizeChange(val) {
       this.pageSize = val;
       console.log(this.pageSize);
@@ -238,7 +358,7 @@ export default {
     createOrder(){
       const formData = new FormData()
       formData.append("token", this.$store.state.token);
-      formData.append("roomID",this.form.roomID);
+      formData.append("roomId",this.form.roomID);
       formData.append("description",this.form.description);
       formData.append("contactName",this.form.contactPerson);
       formData.append("contactPhone",this.form.contactNumber);
@@ -246,39 +366,13 @@ export default {
       formData.append("startTime2",this.form.date2+" "+this.form.time2);
       this.$axios({
         method: 'post',
-        url: '/serviceman/createOrder',
+        url: '/user/applyOrder',
         data: formData
       })
           .then((res) => {
             if (res.data.errno === 0) {
-              this.$message.success("报修成功");
+              this.$message.success("Repair successfully reported");
               this.dialogFormVisible = false;
-              setTimeout(() => {
-                this.$router.go(0);
-              }, 500);
-            } else {
-              console.log(res.data);
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-    },
-    resubmitOrder(){
-      const formData = new FormData()
-      formData.append("token", this.$store.state.token);
-      formData.append("orderID",this.tempOrder.orderID)
-      formData.append("startTime1",this.returnForm.startDate+" "+this.returnForm.startTime);
-      formData.append("startTime2",this.returnForm.date2+" "+this.returnForm.time2);
-      this.$axios({
-        method: 'post',
-        url: '/serviceman/reSubmitOrder',
-        data: formData
-      })
-          .then((res) => {
-            if (res.data.errno === 0) {
-              this.$message.success("重新提交成功");
-              this.returnDialogVis = false;
               setTimeout(() => {
                 this.$router.go(0);
               }, 500);
