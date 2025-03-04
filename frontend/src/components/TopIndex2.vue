@@ -7,14 +7,10 @@
         <el-menu-item :index=(index+1).toString() v-for="(item, index) in data">
           <img :src=item.src style="height: 16px;" />&nbsp;{{item.title}}
         </el-menu-item>
-        <!-- <el-menu-item index="2">
-          <img src="../../../assets/管理员端/statistics/icon1.png" style="height: 20px;" />&nbsp;访客数据
-        </el-menu-item> -->
         <div style="float: right;border-top-right-radius: 10px;position: relative; right: 4vw;top:18px;display: flex;align-items: center">
           <div>
-            管理员ID: {{this.$store.state.adminID}}
+            Admin ID: {{this.$store.state.adminID}}
           </div>
-<!--          <el-button icon="el-icon-right" style="border: none;margin-left: 10px" @click="logout">退出登录</el-button>-->
         </div>
       </el-menu>
     </div>
@@ -31,11 +27,7 @@ export default {
   },
   data() {
     return {
-      activeIndex: '', // 顶部导航栏控制
-      // dt: [
-      //   {src: require('../assets/管理员端/statistics/icon0.png'), title: '未处理工单'},
-      //   {src: require('../assets/管理员端/statistics/icon1.png'), title: '未处理工单'}
-      // ]
+      activeIndex: ''
     }
   },
   methods: {
@@ -62,10 +54,10 @@ export default {
       }
       else if (this.type === 3) {
         if (key === '1') {
-          this.$router.push({path: "/app/manager/repair/repairlist", query:{type:"0"}})
+          this.$router.push({path: "/app/manager/apply/applyList", query:{type:"0"}})
         }
         else if (key === '2') {
-          this.$router.push({path: "/app/manager/repair/repairlist", query:{type:"1"}})
+          this.$router.push({path: "/app/manager/apply/applyList", query:{type:"1"}})
         }
       }
       else if (this.type === 4) {
@@ -78,16 +70,16 @@ export default {
       }
     },
     logout() {
-      this.$confirm('此操作将退出登录, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Do you really want to log out?', 'Confirm', {
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel',
         type: 'warning',
       }).then(() => {
         this.$store.commit('set_token', '');
         this.$store.commit('set_userState', -1);
         this.$store.commit('set_userType', -1);
         this.$message({
-          message: '退出登录!',
+          message: 'Logout!',
           type: 'success',
           duration: 1000,
         });
@@ -150,7 +142,6 @@ export default {
   background: #126c9e !important;
   font-weight: bold;
 }
-/*按钮悬浮*/
 .el-button:hover {
   background: #126c9e !important;
   color: white !important;

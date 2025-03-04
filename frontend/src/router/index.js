@@ -27,10 +27,43 @@ const routes = [
     component: () => import('../views/AppView'),
 
     children: [
+      {
+        path: 'manager/people',
+        name: 'peopleManagement',
+        component: () => import('../views/manager/peopleManagement/peopleClassify'),
+        children: [
+          {
+            path: 'customer',
+            name: 'customerManagement',
+            component: () => import('../views/manager/peopleManagement/customerInfo'),
+          },
+          {
+            path: 'manager',
+            name: 'managerManagement',
+            component: () => import('../views/manager/peopleManagement/managerInfo'),
+          },
+          {
+            path: 'maintainer',
+            name: 'maintainerManagement',
+            component: () => import('../views/manager/peopleManagement/maintainerInfo'),
+          },
+        ],
+      },
+
+      {
+        path: 'manager/apply',
+        name: 'applyTopIndex',
+        component: () => import('../views/manager/apply/applyTop.vue'),
+        children: [
+          {
+            path: 'applyList',
+            name: 'applyList',
+            component: () => import('../views/manager/apply/apply.vue'),
+          },
+        ],
+      },
       
-      
-     
-      
+
       
       {
         path: 'client/room',
@@ -78,7 +111,7 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else if(url === 'room' || url === 'statistics' || url === 'peopleManagement' || url === 'repairTopIndex' || url === 'app') {
+  } else if(url === 'room' || url === 'statistics' || url === 'peopleManagement' || url === 'applyTopIndex' || url === 'app') {
     
     next(false)
   } else if(url === 'rooms' || url === 'repair' || url === 'visitor' || url === 'customerManagement' || url === 'managerManagement' || url === 'maintainerManagement' || url === 'rentRequests' || url === 'roomsDetail') {

@@ -5,7 +5,7 @@
           src="../../assets/管理员端/logo.png" />
       </li>
       <UserIndex v-if="type == 1" ></UserIndex>
-      
+      <AdminIndex v-else-if="type == 2" ></AdminIndex>
       <RepairIndex v-else-if="type == 3"></RepairIndex>
       <li @click="toLogOut()" style="position: absolute; bottom: 50px;">
         <el-tooltip effect="dark" content="log out" placement="top">
@@ -18,11 +18,12 @@
 </template>
 
 <script>
+import AdminIndex from "@/components/sideIndex/AdminIndex.vue";
 import UserIndex from "@/components/sideIndex/UserIndex.vue"
 import RepairIndex from "@/components/sideIndex/RepairIndex.vue"
 export default {
   name: "SideIndex",
-  components: {  UserIndex, RepairIndex },
+  components: { AdminIndex, UserIndex, RepairIndex },
   data() {
     return {
       type: 1, // 1user, 2admin, 3repair
