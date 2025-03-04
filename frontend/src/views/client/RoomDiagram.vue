@@ -54,7 +54,7 @@
             </div>
           </el-tooltip>
           <div v-if="line === 2 && i === 0">
-            <img src="@/assets/roomInfo/mid.png" style="width: 565px; height: 50px; margin-right: 5px" />
+            <img src="@/assets/roomInfo/mid.png" style="width: 450px; height: 40px; margin-right: 5px" />
           </div>
         </div>
       </div>
@@ -356,9 +356,9 @@ import img5 from '@/assets/room-images/room5.jpg'
           let cursor = 'pointer';
           if (this.isMultiRenting && room.status !== 0) cursor = 'not-allowed';
 
-          const baseWidth = 50;
+          const baseWidth = 40;
           let width = 0;
-          let margin = 7;
+          let margin = 5;
 
           if (room.area <= 50) width = baseWidth;
           else if (room.area <= 100) width = baseWidth * 1.5 + margin * 0.5;
@@ -409,7 +409,7 @@ import img5 from '@/assets/room-images/room5.jpg'
 
   .room-card {
     width: var(--width);
-    height: 50px;
+    height: 40px;
     border-radius: 15px;
     margin: 0px var(--margin) var(--margin) 0px;
     background: var(--background);
