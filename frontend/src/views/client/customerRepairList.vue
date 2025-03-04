@@ -175,9 +175,15 @@
     >
     </el-table-column>
     <el-table-column
+      prop="description"
+      label="Problem Description"
+      min-width="50 "
+      show-overflow-tooltip>
+  </el-table-column>
+    <el-table-column
         prop="status"
         label="Status"
-        width="100"
+        width="200"
         align="center"
     >
       <template v-slot="scope">

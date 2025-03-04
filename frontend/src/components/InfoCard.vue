@@ -14,12 +14,11 @@
         <!-- <img src="@/assets/userInfo/telephone.svg"
           style="height: 16px;margin-right: 3px;" /> -->
           {{ phone }}</div>
-      <div class="center" style="margin-top: 40px"><el-button icon="el-icon-user-solid" type="primary"
-          @click="dialogFormVisible = true">Edit</el-button></div>
+          
     </div>
 
     <!-- 邀请访客 -->
-    <el-dialog title="邀请访客" :visible.sync="dialogFormVisible" style="text-align: left;">
+    <!-- <el-dialog title="邀请访客" :visible.sync="dialogFormVisible" style="text-align: left;">
       <el-form :model="form" :rules="rules">
         <el-form-item label="访客姓名" :label-width="formLabelWidth" prop="customerName">
           <el-input v-model="form.customerName" placeholder="请输入访客姓名"></el-input>
@@ -40,7 +39,7 @@
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="submit">确 定</el-button>
       </div>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 
@@ -48,30 +47,30 @@
 export default {
   name: 'InfoCard',
   data() {
-    var checkPhone = (rule, value, callback) => {
-      if (!value || value === '') {
-        return callback(new Error('手机号不能为空'));
-      } else {
-        var reg = /^1[0-9]{10}$/;
-        if (!reg.test(value)) {
-          callback(new Error('请输入有效的手机号'));
-        } else {
-          callback();
-        }
-      }
-    };
-    var checkEmail = (rule, value, callback) => {
-      if (!value || value === '') {
-        return callback(new Error('邮箱地址不能为空'));
-      } else {
-        var reg = /^[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
-        if (!reg.test(value)) {
-          callback(new Error('请输入有效的邮箱地址'));
-        } else {
-          callback();
-        }
-      }
-    };
+    // var checkPhone = (rule, value, callback) => {
+    //   if (!value || value === '') {
+    //     return callback(new Error('手机号不能为空'));
+    //   } else {
+    //     var reg = /^1[0-9]{10}$/;
+    //     if (!reg.test(value)) {
+    //       callback(new Error('请输入有效的手机号'));
+    //     } else {
+    //       callback();
+    //     }
+    //   }
+    // };
+    // var checkEmail = (rule, value, callback) => {
+    //   if (!value || value === '') {
+    //     return callback(new Error('邮箱地址不能为空'));
+    //   } else {
+    //     var reg = /^[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
+    //     if (!reg.test(value)) {
+    //       callback(new Error('请输入有效的邮箱地址'));
+    //     } else {
+    //       callback();
+    //     }
+    //   }
+    // };
     return {
       dialogFormVisible: false,
       formLabelWidth: '130px',

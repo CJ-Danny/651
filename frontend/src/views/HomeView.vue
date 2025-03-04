@@ -464,23 +464,25 @@ export default {
 
     },
     adminRoute(index) {
-      
-      if (this.$store.state.userState === 1 && this.$store.state.userType === 1) {
-        if (index === 0) {
-          this.$router.push('/app/manager/people/customer')
-        } else if (index === 1) {
-          this.$router.push('/app/manager/room/rooms')
-        } else if (index === 2) {
-          this.$router.push({ path: "/app/manager/repair/repairlist", query: { type: "0" } })
-        }
-      } else {
-        this.$message({
-          message: 'Only administrators can access this page!',
-          type: 'warning'
-        });
+    if (this.$store.state.userState === -1) { 
+      this.$router.push("/login"); 
+      return;
+    }
+    
+    if (this.$store.state.userState === 1 && this.$store.state.userType === 1) {
+     
+      if (index === 0) {
+        this.$router.push('/app/manager/people/customer');
+      } else if (index === 1) {
+        this.$router.push('/app/manager/room/rooms');
+      } else if (index === 2) {
+        this.$router.push({ path: "/app/manager/repair/repairlist", query: { type: "0" } });
       }
-
-    },
+    } else {
+      
+      this.$router.push("/login");
+    }
+  },
     startNow() {
       if (this.$store.state.userState === -1) {
         this.$router.push('/login')

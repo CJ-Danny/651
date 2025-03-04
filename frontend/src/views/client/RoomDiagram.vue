@@ -47,7 +47,7 @@
                 {{ roomList[roomIdx].roomName }}
               </div>
               <div>area：{{ roomList[roomIdx].area }} m²</div>
-              <div>fees：{{ roomList[roomIdx].rent }} CAD/month</div>
+              <div>fees：{{ roomList[roomIdx].price }} CAD/month</div>
             </template>
             <div :style="roomCardStyle(roomIdx)" @click="selectRoom($event, roomIdx)" class="room-card">
               {{ roomList[roomIdx].roomNumber }}
@@ -140,8 +140,16 @@
 </div>
       
       <div class="detail-info-card" v-if="selectedRoom !== null && !isMultiRenting">
-        <img :src="selectedRoom.imgUrl" style="width: 80%; height: 110px" />
+        <img :src="selectedRoom.localImg" style="width: 80%; height: 110px" />
         <br />
+        <div v-if="rentLoading" class="loading-container">
+    <i class="el-icon-loading"></i> 
+    
+  </div>
+
+  <div v-else>
+
+  </div>
         <div style="font-size: 18px; font-weight: bold">
           <div v-if="selectedRoom.status === 0" style="color: #67c23a">Not leased</div>
           <div v-else-if="selectedRoom.status === 1" style="color: #ffa034">Under lease</div>
@@ -155,7 +163,7 @@
         </div>
         <div>
           <span class="el-icon-s-data" style="margin-right: 15px"></span>
-          <span>{{ selectedRoom.floor }} floor · {{ selectedRoom.roomNumber }} 室</span>
+          <span>{{ selectedRoom.floor }} floor · {{ selectedRoom.roomNumber }} room</span>
         </div>
         <div>
           <span class="el-icon-s-home" style="margin-right: 15px"></span>
@@ -163,7 +171,7 @@
         </div>
         <div>
           <span class="el-icon-s-order" style="margin-right: 15px"></span>
-          <span>fees：{{ selectedRoom.rent }} CAD/month</span>
+          <span>fees：{{ selectedRoom.price }} CAD/month</span>
         </div>
         <div v-if="selectedRoom.status !== 0">
           <div>
@@ -195,11 +203,18 @@
 
 <script>
   import RentRoomDialog from './components/RentRoomDialog.vue';
+  import img1 from '@/assets/room-images/room1.jpg'
+import img2 from '@/assets/room-images/room2.jpg'
+import img3 from '@/assets/room-images/room3.jpg'
+import img4 from '@/assets/room-images/room4.jpg'
+import img5 from '@/assets/room-images/room5.jpg'
   export default {
     components: { RentRoomDialog },
     data() {
       return {
+        localRoomImages: [img1, img2, img3, img4, img5],
         roomList: [],
+        rentLoading: false,
         floorRoomMap: [],
 
         isMultiRenting: false,
@@ -236,18 +251,34 @@
         }
         this.$refs.rentRoomDialogRef.show(selectedRoomList);
       },
-      selectRoom($event, roomIdx) {
-        if (!this.isMultiRenting) {
-          this.selectedRoom = this.roomList[roomIdx];
-        } else {
-          if (this.roomList[roomIdx].status !== 0) return;
-          this.selectedRoom = this.roomList[roomIdx];
-          if (this.isRoomSelected[roomIdx]) this.selectedCount--;
-          else this.selectedCount++;
-          this.isRoomSelected[roomIdx] = !this.isRoomSelected[roomIdx];
-          this.doUpdate++;
+      async selectRoom($event, roomIdx) {
+  if (!this.isMultiRenting) {
+    try {
+          this.rentLoading = true;
+          
+          // 添加随机图片逻辑
+          const randomIndex = Math.floor(Math.random() * this.localRoomImages.length);
+          const selectedImg = this.localRoomImages[randomIndex];
+
+          // 更新选中房间数据
+          this.selectedRoom = {
+            ...this.roomList[roomIdx],
+            localImg: selectedImg, // 使用本地随机图片
+            price: this.roomList[roomIdx].price
+          };
+        } finally {
+          this.rentLoading = false;
         }
-      },
+      } 
+    else{
+    if (this.roomList[roomIdx].status !== 0) return;
+    this.selectedRoom = this.roomList[roomIdx];
+    if (this.isRoomSelected[roomIdx]) this.selectedCount--;
+    else this.selectedCount++;
+    this.isRoomSelected[roomIdx] = !this.isRoomSelected[roomIdx];
+    this.doUpdate++;}
+  
+},
       blurRoom() {
         this.selectedRoom = null;
       },
