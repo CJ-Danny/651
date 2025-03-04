@@ -90,8 +90,8 @@
       <div class="Section_2" noSelectFont>
         <transition name="head">
           <div class="Section_2_Head" v-show="isShow2">
-            <h1>Client</h1>
-            <p>——Unified access across multiple channels to fully meet customer needs</p>
+            <h1>Knowledge Database</h1>
+            <h3>——For more efficient service</h3>
           </div>
         </transition>
         <transition name="left2">
@@ -101,7 +101,7 @@
               <CountTo ref="refcountofore1" :start-val="StartNumberRoll1" :end-val="NumberRoll1" :duration="1000">
               </CountTo>
             </div>
-            <div class="NumberRollTitle">Number of customers</div>
+            <div class="NumberRollTitle">Number of data entries</div>
             <div class="NumberRoll">
               <!-- <NumberRoll :from="StartNumberRoll2" :to="NumberRoll2" /> -->
               <CountTo ref="refcountofore2" :start-val="StartNumberRoll2" :end-val="NumberRoll2" :duration="1000">
@@ -113,7 +113,7 @@
               <CountTo ref="refcountofore3" :start-val="StartNumberRoll3" :end-val="NumberRoll3" :duration="1000">
               </CountTo>
             </div>
-            <div class="NumberRollTitle">Number of visitors</div>
+            <div class="NumberRollTitle">Number of processed work orders</div>
           </div>
         </transition>
         <transition name="right2">
@@ -153,8 +153,8 @@
                   speed="1" style="width: 300px; height: 300px" loop autoplay></lottie-player>
               </div>
               <div class="card-info noSelectFont">
-                <p class="text-title">Space and Personnel Management</p>
-                <p class="text-body">Providing you with the best management platform—choosing us is the right decision!</p>
+                <p class="text-title">Personnel Management</p>
+                <p class="text-body">Providing you with the best management platform!</p>
               </div>
               <div class="card-footer">
                 <button class="radial-buttonData anime" style="background-color: #e3e3e3;position: relative;"
@@ -170,7 +170,7 @@
               </div>
               <div class="card-info noSelectFont">
                 <p class="text-title">Service Management</p>
-                <p class="text-body">Providing you with the most comprehensive service management platform!</p>
+                <p class="text-body">Providing you with comprehensive service management platform!</p>
               </div>
               <div class="card-footer">
                 <button class="radial-buttonSI anime" style="background-color: #e3e3e3;position: relative;"
@@ -262,7 +262,7 @@ export default {
       isShow4: false,
       StartNumberRoll1: 14,
       StartNumberRoll2: 21, // may change
-      StartNumberRoll3: 0, // may change
+      StartNumberRoll3: 88, // may change
       // StartNumberRoll4: 271793,
       NumberRoll1: 0,
       NumberRoll2: 0,
@@ -1473,22 +1473,19 @@ button.radial-button3 {
 }
 
 .cardApp {
-  width: 300px;
-  height: 455px;
-  padding: .8em;
-  background: #f5f5f5;
-  position: relative;
-  overflow: visible;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  border-radius: 1rem;
+  width: 350px;
+  height: 520px;  
+  padding: 1.2em;
+  position: relative;  
 }
 
 .card-img {
   /* background-color: #ffcaa6; */
-  height: 300px;
-  width: 300px;
+  height: 320px;
+  width: 320px;
   border-radius: .5rem;
   transition: .3s ease;
+  margin-bottom: 15px;
 }
 
 .image1 {
@@ -1505,29 +1502,26 @@ button.radial-button3 {
 
 .card-info {
   padding-top: 5%;
+  padding: 15px; 
+  min-height: 120px;
 }
 
 
 .card-footer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10px;
-  border-top: 1px solid #ddd;
+  padding: 20px 0;
 }
 
 /*Text*/
 .text-title {
-  font-weight: 900;
-  font-size: 1.2em;
-  line-height: 1.5;
-  margin: 0;
+  font-size: 1.4em;
+  margin-bottom: 12px;
+  
+  
 }
 
 .text-body {
-  font-size: .9em;
-  padding-bottom: 10px;
+  font-size: 1em;
+  line-height: 1.4;
 }
 
 /*Hover*/

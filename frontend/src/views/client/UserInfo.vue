@@ -34,8 +34,7 @@
               </div>
               <h3>Rental History</h3>
               <el-table :data="rentList" stripe style="width: 100%" empty-text="No rental history available">
-                <el-table-column prop="rentId" label="RentID" width="100">
-                </el-table-column>
+                
                 <el-table-column label="Room No." width="150">
                   <template slot-scope="scope">
                     <div class="room-number-list">
