@@ -2,5 +2,7 @@
 ### run backend
 python manage.py runserver
 ### run frontend
-npm install
+##### first time
+npm install 
+##### normal
 npm run serve
