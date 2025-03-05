@@ -55,7 +55,7 @@
             </div>
           </el-tooltip>
           <div v-if="line === 2 && i === 0">
-            <img src="@/assets/roomInfo/mid.png" style="width: 675px; height: 110px; margin-right: 5px" />
+            <img src="@/assets/roomInfo/mid.png" style="width: 695px; height: 100px; margin-right: 5px" />
           </div>
         </div>
       </div>
