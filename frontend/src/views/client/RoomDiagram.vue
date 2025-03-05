@@ -1,7 +1,8 @@
 <template>
-  <el-container style="width: 100%" class="main">
+  <el-container style="width: 100%; height: 85%;" class="main">
+
     
-<el-aside width="65%" v-loading="isLoading" class="left detail-info-card">
+    <el-aside style="flex: 1; min-width: 0" v-loading="isLoading" class="left detail-info-card">
  
   <el-container 
     v-for="floorInfo in floorRoomMap" 
@@ -10,7 +11,7 @@
   >
     <el-aside width="10%" class="floor-label"> Floor {{ floorInfo.floor }} </el-aside>
     <el-main style="line-height: 0; padding: 0">
-     
+      
       <div 
         class="rooms" 
         v-for="line in [1, 2, 3]" 
@@ -18,10 +19,10 @@
       >
        
         <div
-          v-for="(roomIdx, i) in getRoomIdxListByLine(floorInfo.roomIdxList, line)"
-          :key="roomList[roomIdx].roomId || i" 
-          style="display: flex; align-items: center"
-        >
+        v-for="(roomIdx, i) in getRoomIdxListByLine(floorInfo.roomIdxList, line)"
+  :key="roomList[roomIdx].roomId || i" 
+  style="display: flex; align-items: center; position: relative" 
+>
           <el-tooltip
             effect="light"
             placement="bottom"
@@ -54,7 +55,7 @@
             </div>
           </el-tooltip>
           <div v-if="line === 2 && i === 0">
-            <img src="@/assets/roomInfo/mid.png" style="width: 450px; height: 40px; margin-right: 5px" />
+            <img src="@/assets/roomInfo/mid.png" style="width: 675px; height: 110px; margin-right: 5px" />
           </div>
         </div>
       </div>
@@ -140,7 +141,7 @@
 </div>
       
       <div class="detail-info-card" v-if="selectedRoom !== null && !isMultiRenting">
-        <img :src="selectedRoom.localImg" style="width: 80%; height: 110px" />
+        <img :src="selectedRoom.localImg" style="width: 90%; height: 110px" />
         <br />
         <div v-if="rentLoading" class="loading-container">
     <i class="el-icon-loading"></i> 
@@ -256,14 +257,13 @@ import img5 from '@/assets/room-images/room5.jpg'
     try {
           this.rentLoading = true;
           
-          // 添加随机图片逻辑
+         
           const randomIndex = Math.floor(Math.random() * this.localRoomImages.length);
           const selectedImg = this.localRoomImages[randomIndex];
 
-          // 更新选中房间数据
           this.selectedRoom = {
             ...this.roomList[roomIdx],
-            localImg: selectedImg, // 使用本地随机图片
+            localImg: selectedImg, 
             price: this.roomList[roomIdx].price
           };
         } finally {
@@ -381,7 +381,7 @@ import img5 from '@/assets/room-images/room5.jpg'
 
 <style scoped>
   .main {
-    margin: 0px 50px 50px 50px;
+    margin: 0 20px 20px 20px;
   }
 
   .left {
@@ -389,10 +389,13 @@ import img5 from '@/assets/room-images/room5.jpg'
   }
 
   .floor-card {
-    background-color: white;
-    border-bottom: 10px dotted #e7e7e7;
-    padding: 20px;
-  }
+  padding: 10px;
+  min-height: 160px;
+  position: relative;
+  display: flex;
+  border-bottom: 20px dotted #e7e7e7;
+  flex: 1;  
+}
 
   .floor-label {
     display: flex;
@@ -403,14 +406,17 @@ import img5 from '@/assets/room-images/room5.jpg'
   }
 
   .rooms {
-    display: flex;
-    padding: 0px;
-  }
+  display: flex;
+  padding: 0;
+  gap: 5px;  
+  flex-wrap: wrap;
+}
 
   .room-card {
+    position: relative;
     width: var(--width);
-    height: 40px;
-    border-radius: 15px;
+    height: 110px;
+    border-radius: 30px;
     margin: 0px var(--margin) var(--margin) 0px;
     background: var(--background);
     color: var(--color);
@@ -440,9 +446,8 @@ import img5 from '@/assets/room-images/room5.jpg'
     padding: 15px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
-
   .multi-rent-card {
     max-height: 55vh;
     overflow-y: auto;
@@ -461,4 +466,10 @@ import img5 from '@/assets/room-images/room5.jpg'
     margin-right: 6px;
     display: inline-block;
   }
+  
+  @media screen and (max-width: 1600px) {
+  .mid-image {
+    width: 100% !important;  
+    height: 40px !important;
+  }}
 </style>
