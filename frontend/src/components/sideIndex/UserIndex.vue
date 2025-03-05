@@ -6,7 +6,7 @@
     </li>
     <li id="list2" @click="toList2()">
       <img class="list12" src="../../assets/管理员端/icon2.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 10px;">Maintenance Requests</p>
+      <p style="font-size: 14px;position: relative;left: 10px;">Repair</p>
     </li>
     <li id="list3" @click="toList3()">
       <img class="list12" src="../../assets/管理员端/icon7.png" /><br>
