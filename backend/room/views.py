@@ -105,3 +105,15 @@ def createBill(request):
     bill.save()
 
     return JsonResponse({'errno': 0, 'msg': "bill created successfully"})
+
+
+@csrf_exempt
+def payBill(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    billID = request.POST.get('billID')
+    status = request.POST.get('status')
+    bill = Bill.objects.get(billId=billID)
+    bill.status = status
+    bill.save()
+    return JsonResponse({'errno': 0, 'msg': "success"})
