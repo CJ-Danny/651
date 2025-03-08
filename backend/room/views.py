@@ -18,9 +18,9 @@ def getRoomsInfo(request):
     rooms = Room.objects.all()
     data = []
     for room in rooms:
-        curTime = datetime.datetime.now()
-        rents = Rent.objects.filter(roomId=room.roomId).filter(status=1) \
-            .filter(startTime__lt=curTime).filter(endTime__gt=curTime)
+        # curTime = datetime.datetime.now()
+        rents = Rent.objects.filter(roomId=room.roomId).filter(status=1)
+            # .filter(startTime__lt=curTime).filter(endTime__gt=curTime)
 
         if rents.exists():
             rent = rents.first()
