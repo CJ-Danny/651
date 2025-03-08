@@ -67,3 +67,27 @@ def getUserInfo(request):
         })
     return JsonResponse({'errno': 0, 'data': data})
 
+
+@csrf_exempt
+def getManagerInfo(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+
+    data = []
+    managers = Manager.objects.exclude(type=1)
+
+    for manager in managers:
+        finished_num = Order.objects.filter(managerID=manager.managerId, status=2).count()
+        unfinished_num = Order.objects.filter(managerID=manager.managerId, status=1).count()
+
+        data.append({
+            'managerId': manager.managerId,
+            'name': manager.name,
+            'email': manager.email,
+            'type': manager.type,
+            'status': manager.status,
+            'finished_num': finished_num,
+            'unfinished_num': unfinished_num
+        })
+
+    return JsonResponse({'errno': 0, 'data': data})
