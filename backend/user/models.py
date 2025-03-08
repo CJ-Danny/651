@@ -6,7 +6,6 @@ class User(models.Model):
     userId = models.AutoField(primary_key=True)
     userName = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
-    type = models.IntegerField(null=True)  # 0 means normal user, 1 means invitor
     email = models.CharField(max_length=30, default="")
 
 
@@ -23,7 +22,9 @@ class Rent(models.Model):
 class Bill(models.Model):
     billId = models.AutoField(primary_key=True)
     rentID = models.IntegerField()
-    status = models.IntegerField(default=0)  # 0 unPay, 1 payed
+    status = models.IntegerField(default=0)  # 0 unpaid, 1 payed
+    createTime = models.DateTimeField()
+    due = models.DateTimeField()
     money = models.IntegerField(default=0)
 
 

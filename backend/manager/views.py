@@ -40,3 +40,30 @@ def reviewRent(request):
     rent.status = status
     rent.save()
     return JsonResponse({'errno': 0, 'msg': "review success"})
+
+
+@csrf_exempt
+def getUserInfo(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+
+    data = []
+    users = User.objects.all()
+
+    for user in users:
+        rents = Rent.objects.filter(userId=user.userId)
+        bill_unpaid_num = 0
+        rent_num = rents.count()
+
+        for rent in rents:
+            bill_unpaid_num += Bill.objects.filter(rentID=rent.rentId, status=0).count()
+
+        data.append({
+            'userId': user.userId,
+            'userName': user.userName,
+            'email': user.email,
+            'rent_num': rent_num,
+            'bill_unpaid_num': bill_unpaid_num
+        })
+    return JsonResponse({'errno': 0, 'data': data})
+
