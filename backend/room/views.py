@@ -70,6 +70,14 @@ def getRoomsInfo(request):
             })
     return JsonResponse({'data': data})
 
+@csrf_exempt
+def getBills(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    rentID = request.POST.get('rentID')
+    bills = list(Bill.objects.filter(rentID=rentID).values())
+    return JsonResponse({'errno': 0, 'msg': "success", 'bills': bills})
+
 
 @csrf_exempt
 def createBill(request):
@@ -96,4 +104,4 @@ def createBill(request):
     )
     bill.save()
 
-    return JsonResponse({'errno': 0, 'msg': "bill created successfully", 'billId': bill.billId})
+    return JsonResponse({'errno': 0, 'msg': "bill created successfully"})
