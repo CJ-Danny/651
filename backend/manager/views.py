@@ -91,3 +91,29 @@ def getManagerInfo(request):
         })
 
     return JsonResponse({'errno': 0, 'data': data})
+
+
+@csrf_exempt
+def addManager(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+
+    name = str(request.POST.get('name'))
+    password = str(request.POST.get('password'))
+    email = str(request.POST.get('email'))
+    type = int(request.POST.get('type'))
+    status = int(request.POST.get('status', 1))
+
+    if Manager.objects.filter(email=email).exists():
+        return JsonResponse({'errno': 1000, 'msg': "manager exists"})
+
+    manager = Manager(
+        name=name,
+        password=password,
+        email=email,
+        type=type,
+        status=status
+    )
+    manager.save()
+
+    return JsonResponse({'errno': 0, 'msg': "manager added successfully"})

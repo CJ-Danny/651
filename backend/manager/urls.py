@@ -6,4 +6,5 @@ urlpatterns = [
     path('reviewRent', reviewRent, name='reviewRent'),
     path('getUserInfo', getUserInfo, name='getUserInfo'),
     path('getManagerInfo', getManagerInfo, name='getManagerInfo'),
+    path('addManager', addManager, name='addManager'),
 ]
