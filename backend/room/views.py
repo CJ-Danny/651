@@ -49,6 +49,7 @@ def getRoomsInfo(request):
                 'startTime': rent.startTime.strftime('%Y-%m-%d %H:%M'),
                 'endTime': rent.endTime.strftime('%Y-%m-%d %H:%M'),
                 'userID': rent.userId,
+                'rentID': rent.rentId,
                 'userName': user.userName,
             })
         else:
@@ -64,6 +65,35 @@ def getRoomsInfo(request):
                 'startTime': '',
                 'endTime': '',
                 'userID': '',
+                'rentID': '',
                 'userName': '',
             })
     return JsonResponse({'data': data})
+
+
+@csrf_exempt
+def createBill(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+
+    rentID = request.POST.get('rentID')
+    due_date_str = request.POST.get('due')
+    money = request.POST.get('money', 0)
+
+    if not rentID or not due_date_str:
+        return JsonResponse({'errno': 1001, 'msg': "missing rentID or due date"})
+
+    try:
+        due_date = datetime.datetime.strptime(due_date_str, '%Y-%m-%d')
+    except ValueError:
+        return JsonResponse({'errno': 1002, 'msg': "invalid due date format, expected 'YYYY-MM-DD'"})
+
+    bill = Bill(
+        rentID=rentID,
+        createTime=datetime.datetime.now(),
+        due=due_date,
+        money=money
+    )
+    bill.save()
+
+    return JsonResponse({'errno': 0, 'msg': "bill created successfully", 'billId': bill.billId})
