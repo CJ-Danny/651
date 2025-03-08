@@ -117,3 +117,21 @@ def addManager(request):
     manager.save()
 
     return JsonResponse({'errno': 0, 'msg': "manager added successfully"})
+
+
+@csrf_exempt
+def deleteManager(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    manager_id = request.POST.get('managerId')
+
+    if not manager_id:
+        return JsonResponse({'errno': 1000, 'msg': "managerId is required"})
+
+    try:
+        manager = Manager.objects.get(managerId=manager_id)
+        manager.delete()
+
+        return JsonResponse({'errno': 0, 'msg': "manager deleted successfully"})
+    except Manager.DoesNotExist:
+        return JsonResponse({'errno': 1001, 'msg': "manager not found"})

@@ -7,4 +7,5 @@ urlpatterns = [
     path('getUserInfo', getUserInfo, name='getUserInfo'),
     path('getManagerInfo', getManagerInfo, name='getManagerInfo'),
     path('addManager', addManager, name='addManager'),
+    path('deleteManager', deleteManager, name='deleteManager'),
 ]
