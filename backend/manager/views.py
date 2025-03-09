@@ -11,7 +11,7 @@ from user.token import *
 
 # Create your views here.
 @csrf_exempt
-def getRentInfo(request):
+def ManagerGetRentInfo(request):
     if request.method != 'POST':
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})
     status = request.POST.get('status', -1)

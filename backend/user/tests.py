@@ -1,3 +1,5 @@
+import datetime
+
 from manager.models import *
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -99,6 +101,8 @@ class GetRentInfoTest(TestCase):
         Bill.objects.create(
             rentID=self.rent.rentId,
             status=0,
+            createTime=timezone.now(),
+            due=timezone.now(),
             money=2000,
         )
 
@@ -139,7 +143,7 @@ class ApplyRoomTest(TestCase):
             email="test@gmail.com"
         )
 
-        self.token = GetToken(self.user.email, self.user.userId, self.user.type)
+        self.token = GetToken(self.user.email, self.user.userId)
         self.token = self.token.decode('utf-8')
 
     def test_apply_room_success(self):

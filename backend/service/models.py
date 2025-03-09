@@ -7,11 +7,11 @@ class Order(models.Model):
     userID = models.IntegerField(default=-1)
     roomID = models.IntegerField(default=-1)
     description = models.CharField(max_length=500, default='')
-    submitTime = models.DateTimeField(default='2000-01-01 00:00')
+    submitTime = models.DateTimeField()
     status = models.IntegerField(default=0)  # 0 not distribute, 1 don't finish, 2 finish, 3 error
 
     managerID = models.IntegerField(default=-1)
-    assignTime = models.DateTimeField(default='2000-01-01 00:00')
+    assignTime = models.DateTimeField()
 
-    finishTime = models.DateTimeField(default='2000-01-01 00:00')
+    finishTime = models.DateTimeField()
     method = models.CharField(max_length=500, default='')
