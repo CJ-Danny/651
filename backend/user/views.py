@@ -111,7 +111,6 @@ def register(request):
         user = User(
             userName=userName,
             password=password,
-            type=0,
             email=email
         )
         user.save()
