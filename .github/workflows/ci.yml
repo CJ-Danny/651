@@ -29,4 +29,4 @@ jobs:
       - name: Run backend tests
         working-directory: ./backend
         run: |
-          python manage.py test
+          yes | python manage.py test
