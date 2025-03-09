@@ -15,4 +15,3 @@ class Knowledge(models.Model):
     knowledgeId = models.AutoField(primary_key=True)
     problem = models.CharField(max_length=100)
     solution = models.TextField(max_length=2000)
-    type = models.IntegerField(default=0)

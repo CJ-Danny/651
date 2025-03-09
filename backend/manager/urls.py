@@ -9,4 +9,5 @@ urlpatterns = [
     path('addManager', addManager, name='addManager'),
     path('deleteManager', deleteManager, name='deleteManager'),
     path('getAllKnowledge', getAllKnowledge, name='getAllKnowledge'),
+    path('addKnowledge', addKnowledge, name='addKnowledge'),
 ]
