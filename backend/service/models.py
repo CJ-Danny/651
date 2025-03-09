@@ -6,9 +6,12 @@ class Order(models.Model):
     orderID = models.AutoField(primary_key=True)
     userID = models.IntegerField(default=-1)
     roomID = models.IntegerField(default=-1)
-    status = models.IntegerField(default=0)  # 0 not distribute, 1 don't finish, 2 finish, 3 error
-    managerID = models.IntegerField(default=-1)
-    submitTime = models.DateTimeField(default='2000-01-01 00:00')
-    finishTime = models.DateTimeField(default='2000-01-01 00:00')
     description = models.CharField(max_length=500, default='')
+    submitTime = models.DateTimeField(default='2000-01-01 00:00')
+    status = models.IntegerField(default=0)  # 0 not distribute, 1 don't finish, 2 finish, 3 error
+
+    managerID = models.IntegerField(default=-1)
+    assignTime = models.DateTimeField(default='2000-01-01 00:00')
+
+    finishTime = models.DateTimeField(default='2000-01-01 00:00')
     method = models.CharField(max_length=500, default='')

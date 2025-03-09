@@ -48,7 +48,7 @@ def login(request):
             token = str(token)
             token = token[1:]
             request.session["token"] = token
-            return JsonResponse({'errno': 0, 'msg': "登录成功",
+            return JsonResponse({'errno': 0, 'msg': "login success",
                                  'token': token,
                                  'type': manager.type,
                                  'id': manager.managerId
