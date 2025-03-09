@@ -138,8 +138,9 @@ def deleteManager(request):
 
 
 @csrf_exempt
-def getKnowledge(request):
+def getAllKnowledge(request):
     if request.method != 'POST':
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})
     knowledge = list(Knowledge.objects.all().values())
     return JsonResponse({'errno': 0, 'data': knowledge})
+
