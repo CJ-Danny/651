@@ -34,13 +34,22 @@ def assainOrder(request):
     if request.method != 'POST':
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})
     orderID = str(request.POST.get('orderID'))
-    managerID = str(request.POST.get('orderID'))
+    managerID = str(request.POST.get('managerID'))
     order = Order.objects.get(orderID=orderID)
     order.managerID = managerID
     order.status = 1
     order.assignTime = datetime.datetime.now()
     order.save()
     return JsonResponse({'errno': 0, 'msg': "success"})
+
+
+@csrf_exempt
+def getManagerOrder(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    managerID = str(request.POST.get('managerID'))
+    orders = list(Order.objects.filter(managerID=managerID).values())
+    return JsonResponse({'errno': 0, 'data': orders})
 
 
 @csrf_exempt
