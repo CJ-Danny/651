@@ -157,3 +157,13 @@ def addKnowledge(request):
     )
     knowledge.save()
     return JsonResponse({'errno': 0, 'msg': "knowledge added successfully"})
+
+
+@csrf_exempt
+def searchKnowledge(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    problem = request.POST.get('problem')
+    knowledge = Knowledge.objects.filter(problem__icontains=problem)
+    knowledge_data = list(knowledge.values())
+    return JsonResponse({'errno': 0, 'data': knowledge_data})
