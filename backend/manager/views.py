@@ -135,3 +135,11 @@ def deleteManager(request):
         return JsonResponse({'errno': 0, 'msg': "manager deleted successfully"})
     except Manager.DoesNotExist:
         return JsonResponse({'errno': 1001, 'msg': "manager not found"})
+
+
+@csrf_exempt
+def getKnowledge(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    knowledge = list(Knowledge.objects.all().values())
+    return JsonResponse({'errno': 0, 'data': knowledge})
