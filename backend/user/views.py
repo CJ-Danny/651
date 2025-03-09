@@ -33,18 +33,16 @@ def login(request):
             user = User.objects.get(email=email)
             if user.password != password:
                 return JsonResponse({'errno': 1000, 'msg': "password wrong!"})
-            token = GetToken(email, user.userId, user.type)
+            token = GetToken(email, user.userId)
             token = str(token)
             token = token[1:]
             request.session["token"] = token
-            return JsonResponse({'errno': 0, 'msg': "登录成功",
-                                 'token': token,
-                                 'type': user.type})
+            return JsonResponse({'errno': 0, 'msg': "登录成功", 'token': token})
         else:
             manager = Manager.objects.get(email=email)
             if manager.password != password:
                 return JsonResponse({'errno': 1000, 'msg': "password wrong!"})
-            token = GetToken(email, manager.managerId, manager.type)
+            token = GetToken(email, manager.managerId)
             token = str(token)
             token = token[1:]
             request.session["token"] = token

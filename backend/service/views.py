@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 import string
 import random
@@ -37,5 +39,19 @@ def assainOrder(request):
     order.managerID = managerID
     order.status = 1
     order.assignTime = datetime.datetime.now()
+    order.save()
+    return JsonResponse({'errno': 0, 'msg': "success"})
+
+
+@csrf_exempt
+def finishOrder(request):
+    if request.method != 'POST':
+        return JsonResponse({'errno': 1000, 'msg': "wrong method"})
+    orderID = str(request.POST.get('orderID'))
+    method = request.POST.get('method')
+    order = Order.objects.get(orderID=orderID)
+    order.status = 2
+    order.method = method
+    order.finishTime = datetime.datetime.now()
     order.save()
     return JsonResponse({'errno': 0, 'msg': "success"})

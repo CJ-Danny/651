@@ -4,9 +4,9 @@ from jwt import decode
 from jwt import encode
 
 
-def GetToken(email, userid, type):
+def GetToken(email, userid):
     time = datetime.datetime.now()
-    return encode({'email': email, 'logintime': str(time), 'id': userid, 'type': type
+    return encode({'email': email, 'logintime': str(time), 'id': userid, 'type': 0
                    }, 'secret_key', algorithm='HS256')
 
 
