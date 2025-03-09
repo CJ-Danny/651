@@ -10,7 +10,7 @@ from user.token import *
 # Create your tests here.
 class LoginViewTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create(userName='testuser', email='test@example.com', password='password123', type=0)
+        self.user = User.objects.create(userName='testuser', email='test@example.com', password='password123')
         self.manager = Manager.objects.create(name='testmanager', email='manager@example.com', password='password456', type=0, status=0)
 
     def test_login_user(self):
@@ -136,7 +136,6 @@ class ApplyRoomTest(TestCase):
             userId=123,
             userName="danny",
             password="test",
-            type=1,
             email="test@gmail.com"
         )
 
