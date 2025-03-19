@@ -62,7 +62,12 @@ const routes = [
           },
         ],
       },
-      
+      {
+        path: 'manager/room',
+        name: 'roomManagement',
+        component: () => import('../views/manager/room/RoomDiagram.vue'),
+        meta: { requiresAdmin: true } 
+      },
 
       
       {
