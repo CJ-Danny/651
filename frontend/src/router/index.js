@@ -62,9 +62,35 @@ const routes = [
           },
         ],
       },
-      
+      {
+        path:'manager/knowledge',
+        name:'knowledgeManager',
+        component: () => import('../views/manager/repairment/knowledge'),
 
-      
+      },
+      {
+        path: 'manager/repair',
+        name: 'repairTopIndex',
+        component: () => import('../views/manager/repairment/repairTop'),
+        children: [
+          {
+            path: 'repairlist',
+            name: 'repairList',
+            component: () => import('../views/manager/repairment/repairment.vue'),
+          },
+        ],
+      },{
+        path: 'manager/repair/knowledge',
+        name: 'knowledge',
+        component: () => import('../views/manager/repairment/knowledge'),
+        children: [
+          {
+            path: 'repairlist',
+            name: 'repairList',
+            component: () => import('../views/manager/repairment/repairment.vue'),
+          },
+        ],
+      },
       {
         path: 'client/room',
         name: 'clientRoom',
