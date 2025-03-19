@@ -29,7 +29,7 @@
                   style="height: 22px; position: relative; top: 4px; right: 3px;margin-right: 2px;" />Your Room:
                 <span v-if="roomNumber.length === 0">Currently no rented room</span>
                 <span v-else>
-                  <span v-for="(item, i) in roomNumber">{{ item }}<c v-show="i !== roomNumber.length - 1">, </c></span>
+                  <span v-for="(item, i) in roomNumber">{{ item }}<span v-show="i !== roomNumber.length - 1">, </span></span>
                 </span>
               </div>
               <h3>Rental History</h3>
