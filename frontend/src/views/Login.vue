@@ -147,65 +147,68 @@ export default {
       }
     },
     login(formName) {
-      const formData = new FormData();
-    
-      formData.append("email", this.loginForm.email); 
-      formData.append("password", this.loginForm.password);
-      formData.append("type", this.userState);
-      this.$refs.loginFormRef.validate((valid) => {
-        if (valid) {
-          this.$axios({
-            method: 'post',
-            url: 'user/login',
-            data: formData,
-          })
-              .then(res => {
-                console.log(res);
-                if(res.data.errno===0) {
-                  this.$message.success('Successfully log in！');
-                  this.$store.commit('set_token', res.data.token.replaceAll('\'', ''));
-                  this.$store.commit('set_userState', this.userState);
-                  this.$store.commit('set_userType', res.data.type);
-                  this.$store.commit('set_adminID', res.data.id);
-                  // this.$store.commit('set_is_login', true);
-                  if(this.userState === 1) {
-                    if(res.data.type === 1) {
-                      setTimeout(() => {
-                        this.$router.push('/app/manager/people/customer');
-                      }, 1000);
-                    }
-                    else if(res.data.type === 2 || res.data.type === 3 || res.data.type === 4) {
-                      setTimeout(() => {
-                        this.$router.push({path: "/app/manager/repair/repairlist", query:{type:"0"}})
-                      }, 1000);
-                    }
-                  }
-                  else {
-                    if(res.data.type === 0) {
-                      setTimeout(() => {
-                        this.$router.push('/app/client/userinfo');
-                      }, 1000);
-                    }
-                    else if(res.data.type === 1) {
-                      setTimeout(() => {
-                        this.$router.push('/app/client/userinfo');
-                      }, 1000);
-                    }
-                  }
-                }
-                else{
-                  this.$message.error(res.data.msg);
-                }
-              })
+  const formData = new FormData();
+  formData.append("email", this.loginForm.email); 
+  formData.append("password", this.loginForm.password);
+  formData.append("type", this.userState);
+
+  this.$refs.loginFormRef.validate((valid) => {
+    if (valid) {
+      this.$axios({
+        method: 'post',
+        url: 'user/login',
+        data: formData,
+      })
+      .then(res => {
+        if(res.data.errno === 0) {
+          this.$message.success('Successfully log in！');
+          
+          
+          this.$store.commit('set_token', res.data.token.replaceAll('\'', ''));
+          this.$store.commit('set_userState', this.userState);
+          this.$store.commit('set_userType', res.data.type);
+          this.$store.commit('set_adminID', res.data.id);
+
+          
+          this.$nextTick(() => {
+            let redirectPath = '';
+            
+            if(this.userState === 1) { 
+              if([2,3,4].includes(res.data.type)) { 
+                redirectPath = {
+                  path: "/app/manager/repair/repairlist",
+                  query: { type: "0" }
+                };
+              } else { 
+                redirectPath = '/app/manager/people/customer';
+              }
+            } else { 
+              redirectPath = '/app/client/userinfo'; 
+            }
+
+            
+            this.$router.push(redirectPath)
               .catch(err => {
-                console.log(err);
-              })
+                if (err.name !== 'NavigationDuplicated') {
+                  console.error('failed:', err);
+                  this.$message.error('please refresh');
+                }
+              });
+          });
         } else {
-          console.log('Submission failed!!');
-          return false;
+          this.$message.error(res.data.msg);
         }
+      })
+      .catch(err => {
+        console.error('request failed:', err);
+        this.$message.error('network error');
       });
-    },
+    } else {
+      console.log('failed');
+      return false;
+    }
+  });
+},
   }
 }
 </script>

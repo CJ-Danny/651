@@ -111,7 +111,7 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else if(url === 'room' || url === 'statistics' || url === 'peopleManagement' || url === 'applyTopIndex' || url === 'app') {
+  } else if(url === 'room' || url === 'statistics' || url === 'peopleManagement' || url === 'applyTopIndex') {
     
     next(false)
   } else if(url === 'rooms' || url === 'repair' || url === 'visitor' || url === 'customerManagement' || url === 'managerManagement' || url === 'maintainerManagement' || url === 'rentRequests' || url === 'roomsDetail') {
