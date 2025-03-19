@@ -62,10 +62,10 @@ export default {
       }
       else if (this.type === 4) {
         if (key === '1') {
-          this.$router.push("/app/manager/statistics/repair")
+          this.$router.push({path: "/app/manager/repair/repairlist", query:{type:"0"}})
         }
         else if (key === '2') {
-          this.$router.push("/app/manager/statistics/visitor")
+          this.$router.push({path: "/app/manager/repair/repairlist", query:{type:"1"}})
         }
       }
     },
@@ -116,9 +116,9 @@ export default {
       }
     }
     else if(this.type === 4) {
-      if (this.$route.path === '/app/manager/statistics/repair') {
+      if (this.$route.query.type === '0') {
         this.activeIndex = '1'
-      } else if (this.$route.path === '/app/manager/statistics/visitor') {
+      } else {
         this.activeIndex = '2'
       }
     }

@@ -74,7 +74,7 @@ export default {
         this.index = 2
       } else if (str == "apply") {
         this.index = 3
-      } else if (str == "statistics") {
+      } else if (str == "repair") {
         this.index = 4
       } else if(str == 'knowledge') {
         this.index = 5
@@ -96,14 +96,14 @@ export default {
       this.$router.push({ path: "/app/manager/apply/applyList", query: { type: "0" } })
     },
 
-    /*
     toList4() {
-      this.$router.push('/app/manager/statistics/repair')
+      this.$router.push('/app/manager/repair')
     },
+
     toList5() {
       this.$router.push('/app/manager/knowledge')
     },
-    */
+
     toHome() {
       this.$router.push('/')
     },
