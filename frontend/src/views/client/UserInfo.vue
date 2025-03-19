@@ -29,7 +29,10 @@
                   style="height: 22px; position: relative; top: 4px; right: 3px;margin-right: 2px;" />Your Room:
                 <span v-if="roomNumber.length === 0">Currently no rented room</span>
                 <span v-else>
-                  <span v-for="(item, i) in roomNumber">{{ item }}<span v-show="i !== roomNumber.length - 1">, </span></span>
+                  <span v-for="(item, i) in roomNumber">
+                    <span class="room-number-clickable" @click="showRoomDetails(item)">{{ item }}</span>
+                    <span v-show="i !== roomNumber.length - 1">, </span>
+                  </span>
                 </span>
               </div>
               <h3>Rental History</h3>
@@ -38,7 +41,9 @@
                 <el-table-column label="Room No." width="150">
                   <template slot-scope="scope">
                     <div class="room-number-list">
-                      {{ scope.row.roomNumber }}
+                      <span class="room-number-clickable" @click="showRoomDetails(scope.row.roomNumber)">
+                        {{ scope.row.roomNumber }}
+                      </span>
                     </div>
                   </template>
                 </el-table-column>
@@ -64,23 +69,74 @@
                   </div>
                   </template>
                 </el-table-column>
-
-                <!-- <el-table-column label="Payment Due" width="160">
-                  <template slot-scope="scope">
-                    {{ scope.row.status === 0 ? getEndOfMonth() : 'Paid' }}
-                  </template>
-                </el-table-column> -->
               </el-table>
             </div>
           </div>
-
         </div>
       </div>
     </div>
+
+    <!-- Room Details Dialog -->
+    <el-dialog
+      title="Room Details"
+      :visible.sync="roomDialogVisible"
+      width="30%"
+      center
+      top="5vh"
+      :append-to-body="true"
+      :fullscreen="false"
+      class="room-details-dialog">
+      <div v-if="currentRoomDetails" class="room-details-content">
+        <el-descriptions :column="1" border>
+          <el-descriptions-item label="Room Number">{{ currentRoomDetails.room.number }}</el-descriptions-item>
+          <el-descriptions-item label="Floor">{{ currentRoomDetails.room.floor }}</el-descriptions-item>
+          <el-descriptions-item label="Area">{{ currentRoomDetails.room.area }}</el-descriptions-item>
+          <el-descriptions-item label="Price">{{ currentRoomDetails.room.price }} CAD/month</el-descriptions-item>
+        </el-descriptions>
+        
+        <div v-if="currentRoomDetails.bills && currentRoomDetails.bills.length > 0">
+          <h3 style="margin-top: 20px">Bills</h3>
+          <el-table :data="currentRoomDetails.bills" style="width: 100%">
+            <el-table-column prop="billId" label="Bill ID" width="80"></el-table-column>
+            <el-table-column label="Amount" width="120">
+              <template slot-scope="scope">
+                {{ scope.row.money }} CAD
+              </template>
+            </el-table-column>
+            <el-table-column label="Due Date">
+              <template slot-scope="scope">
+                {{ scope.row.due ? scope.row.due.substring(0, 10) : 'N/A' }}
+              </template>
+            </el-table-column>
+            <el-table-column label="Status" width="100" align="center">
+              <template slot-scope="scope">
+                <el-tag :type="getBillStatusType(scope.row.status)">
+                  {{ getBillStatusText(scope.row.status) }}
+                </el-tag>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <div v-else style="margin-top: 20px; color: #909399;">
+          <i class="el-icon-info"></i> No bills available for this room.
+        </div>
+        
+        <div v-if="currentRoomDetails.room.imgUrl" class="room-image-container">
+          <img 
+            :src="currentRoomDetails.room.imgUrl" 
+            alt="Room Image" 
+            class="room-image"
+          />
+        </div>
+      </div>
+      <div v-else class="text-center">
+        <i class="el-icon-loading"></i> Loading room details...
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="roomDialogVisible = false">Close</el-button>
+      </span>
+    </el-dialog>
   </div>
-
-
-
 </template>
 
 <script>
@@ -101,6 +157,10 @@ export default {
       customerState: {
         rentList: []
       },
+      // New fields for room details dialog
+      roomDialogVisible: false,
+      currentRoomDetails: null,
+      loadingRoomDetails: false
     }
   },
   methods: {
@@ -147,8 +207,10 @@ export default {
             // Get room numbers - field might be different in your API
             this.roomNumber = [];
             if (res.data.data.rentList && res.data.data.rentList.length > 0) {
-              // Extract room numbers from rentList
-              this.roomNumber = res.data.data.rentList.map(rent => rent.roomNumber);
+              // Extract room numbers only from approved rentals (status = 1)
+              this.roomNumber = res.data.data.rentList
+                .filter(rent => rent.status === 1)
+                .map(rent => rent.roomNumber);
             }
             
             // Get rent list
@@ -188,32 +250,79 @@ export default {
         default:
           return 'Unknown Status';
       }
+    },
+    
+    // Methods for bill status display
+    getBillStatusType(status) {
+      switch (status) {
+        case 0:
+          return 'warning'; // Unpaid
+        case 1:
+          return 'success'; // Paid
+        default:
+          return 'info';
+      }
+    },
+    
+    getBillStatusText(status) {
+      switch (status) {
+        case 0:
+          return 'Unpaid';
+        case 1:
+          return 'Paid';
+        default:
+          return 'Unknown';
+      }
+    },
+    
+    // New method to show room details
+    showRoomDetails(roomNumber) {
+      this.roomDialogVisible = true;
+      this.currentRoomDetails = null;
+      
+      // Find the rent record that matches this room number
+      const rentRecord = this.rentList.find(rent => rent.roomNumber === roomNumber);
+      
+      if (!rentRecord) {
+        this.$message.error('Room information not found');
+        this.roomDialogVisible = false;
+        return;
+      }
+      
+      // Call API to get room details
+      const formData = new FormData();
+      formData.append('token', this.$store.state.token);
+      formData.append('rentId', rentRecord.rentId);
+      
+      this.$axios({
+        method: 'post',
+        url: 'user/getRentInfo',
+        data: formData,
+      })
+        .then((res) => {
+          if (res.data.errno === 0 && res.data.data) {
+            this.currentRoomDetails = res.data.data;
+          } else {
+            this.$message.error('Failed to load room details: ' + (res.data.errmsg || 'Unknown error'));
+            this.roomDialogVisible = false;
+          }
+        })
+        .catch((err) => {
+          console.error('API request failed:', err);
+          this.$message.error('Failed to load room details');
+          this.roomDialogVisible = false;
+        });
     }
-    // getEndOfMonth() {
-    //   const date = new Date();
-    //   // Set to last day of current month
-    //   const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-      
-    //   // Format to YYYY-MM-DD
-    //   const year = lastDay.getFullYear();
-    //   const month = String(lastDay.getMonth() + 1).padStart(2, '0');
-    //   const day = String(lastDay.getDate()).padStart(2, '0');
-      
-    //   return `${year}-${month}-${day}`;
-    // }
   },
   mounted() {
     this.init()
   }
 }
-
-
 </script>
 <style scoped>
 .user-info {
   min-width: 650px;
 }
-
 
 .head {
   display: flex;
@@ -294,8 +403,6 @@ export default {
   box-shadow: 0px 0px 8px 1px #E6E6E6;
 }
 
-/* .info-content-info {} */
-
 .company-name {
   cursor: default;
   font-size: 26px;
@@ -316,8 +423,6 @@ export default {
   color: #2c2c2c;
 }
 
-
-
 .center {
   display: flex;
   align-items: center;
@@ -332,5 +437,59 @@ export default {
   overflow: hidden;
   /* 文本超出时，显示省略标记 */
   text-overflow: ellipsis;
+}
+
+/* New styles for clickable room numbers */
+.room-number-clickable {
+  color: #409EFF;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.room-number-clickable:hover {
+  color: #66b1ff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.room-image-container {
+  margin-top: 20px;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 4px;
+  width: 100%;
+  /* Create a container with 4:3 aspect ratio */
+  position: relative;
+  padding-top: 60%; /* 3/4 = 0.75 = 75% for 4:3 ratio */
+  /* For 5:3 ratio, use 60% (3/5 = 0.6 = 60%) */
+  /* padding-top: 60%; */
+}
+
+.room-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Dialog styles */
+.room-details-dialog .el-dialog {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-details-dialog .el-dialog__body {
+  overflow-y: auto;
+  padding: 15px 20px;
+}
+
+.room-details-content {
+  overflow-y: auto;
 }
 </style>
