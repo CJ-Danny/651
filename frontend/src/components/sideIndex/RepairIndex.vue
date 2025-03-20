@@ -2,11 +2,11 @@
   <div class="app">
     <li id="list1" @click="toList1()">
       <img class="list12" src="../../assets/管理员端/icon3.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 7px;">我的工单</p>
+      <p style="font-size: 14px;position: relative;left: 7px;">My Maintenance Orders</p>
     </li>
     <li id="list2" @click="toList2()">
       <img class="list12" src="../../assets/管理员端/icon2.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 15px;">知识库</p>
+      <p style="font-size: 14px;position: relative;left: 15px;">Knowledge</p>
     </li>
     <div class="card" id="card">
       <div class="upradius"></div>
@@ -27,7 +27,6 @@ export default {
     }
   },
   methods: {
-    // 组件数据初始化调用函数 TODO: 用户端
     init() {
       // console.log(this.$store.state.userState)
       // console.log(this.$store.state.userType)
@@ -48,7 +47,7 @@ export default {
       this.card.style.transition = "all 700ms ease 0s"
       this.$router.push({ path: "/app/manager/repair/repairlist", query: { type: "0" } })
     },
-    //设置蓝色卡片的位置
+    // bule card
     setCardPosition() {
       if (this.index === 1) {
         this.card.style.top = "-50px"
@@ -56,7 +55,6 @@ export default {
         this.card.style.top = "44px"
       }
     },
-    // 去房间管理界面
     toList2() {
       this.index = 2
       this.setCardPosition();

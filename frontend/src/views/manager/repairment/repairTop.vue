@@ -10,8 +10,8 @@ export default {
   data() {
     return {
       dt: [
-        {src: require('@/assets/管理员端/statistics/icon0.png'), title: 'Pending maintenance orders'},
-        {src: require('@/assets/管理员端/statistics/icon1.png'), title: 'Completed maintenance orders'}
+        {src: require('@/assets/管理员端/statistics/icon0.png'), title: 'Pending Maintenance Orders'},
+        {src: require('@/assets/管理员端/statistics/icon1.png'), title: 'Completed Maintenance Orders'}
       ],
     }
   },

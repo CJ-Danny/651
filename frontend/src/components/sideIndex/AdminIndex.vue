@@ -97,7 +97,7 @@ export default {
     },
 
     toList4() {
-      this.$router.push('/app/manager/repair')
+      this.$router.push({ path: "/app/manager/repair/repairList", query: { type: "0" } })
     },
 
     toList5() {
