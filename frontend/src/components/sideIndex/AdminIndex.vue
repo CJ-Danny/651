@@ -20,7 +20,7 @@
     </li>
     <li id="list5" @click="toList5()">
       <img class="list12" src="../../assets/管理员端/icon6.png" /><br>
-      <p style="font-size: 14px;position: relative;left: 15px;">Library</p>
+      <p style="font-size: 14px;position: relative;left: 15px;">Knowledge Base</p>
     </li>
     <div class="card" id="card">
       <div class="upradius"></div>
