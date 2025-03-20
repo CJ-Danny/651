@@ -69,6 +69,12 @@ const routes = [
 
       },
       {
+        path:'manager/room',
+        name:'roommanagement',
+        component: () => import('../views/manager/room/RoomDiagram.vue'),
+
+      },
+      {
         path: 'manager/repair',
         name: 'repairTopIndex',
         component: () => import('../views/manager/repairment/repairTop'),

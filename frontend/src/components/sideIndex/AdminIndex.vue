@@ -86,9 +86,11 @@ export default {
       this.$router.push('/app/manager/people/customer')
     },
 
+    
     toList2() {
       this.$router.push('/app/manager/room')
     },
+    
    
     toList3() {
       this.$router.push({ path: "/app/manager/apply/applyList", query: { type: "0" } })
