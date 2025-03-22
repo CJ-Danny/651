@@ -11,7 +11,6 @@ export default {
     return {
       dt: [
         {src: require('@/assets/peopleManagement/客户管理.png'), title: 'Customer'},
-        {src: require('@/assets/peopleManagement/管理员信息.png'), title: 'Manager'},
         {src: require('@/assets/peopleManagement/维修人员信息.png'), title: 'Service Man'}
       ],
     }

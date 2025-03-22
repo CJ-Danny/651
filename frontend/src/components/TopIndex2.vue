@@ -36,8 +36,6 @@ export default {
         if (key === '1') {
           this.$router.push("/app/manager/people/customer")
         } else if (key === '2') {
-          this.$router.push("/app/manager/people/manager")
-        } else if (key === '3') {
           this.$router.push("/app/manager/people/maintainer")
         }
       }
@@ -93,10 +91,8 @@ export default {
     if(this.type === 1) {
       if (this.$route.path === '/app/manager/people/customer') {
         this.activeIndex = '1'
-      } else if (this.$route.path === '/app/manager/people/manager' ) {
-        this.activeIndex = '2'
       } else if (this.$route.path === '/app/manager/people/maintainer' ) {
-        this.activeIndex = '3'
+        this.activeIndex = '2'
       }
     }
     else if(this.type === 2) {

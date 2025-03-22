@@ -38,11 +38,6 @@ const routes = [
             component: () => import('../views/manager/peopleManagement/customerInfo'),
           },
           {
-            path: 'manager',
-            name: 'managerManagement',
-            component: () => import('../views/manager/peopleManagement/managerInfo'),
-          },
-          {
             path: 'maintainer',
             name: 'maintainerManagement',
             component: () => import('../views/manager/peopleManagement/maintainerInfo'),
