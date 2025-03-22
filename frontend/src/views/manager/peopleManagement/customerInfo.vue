@@ -82,31 +82,38 @@ border-top-left-radius: 20px;border-top-right-radius: 20px;display: flex;flex-di
       :data="tableData.slice((table_page - 1) * 6, table_page * 6)"
       style="width: 75vw;;margin-top: 2vh;">
     <el-table-column
-        label="Name"
-        prop="trueName"
+        label="Id"
+        prop="userId"
+        min-width="30">
+
+    </el-table-column>
+
+    <el-table-column
+        label="UserName"
+        prop="userName"
+        min-width="80">
+
+    </el-table-column>
+
+    <el-table-column
+        label="Email"
+        prop="email"
         min-width="100">
 
     </el-table-column>
 
     <el-table-column
-        label="Phone Number"
-        prop="phoneNumber"
-        min-width="180">
+        label="TotalBills"
+        prop="rent_num"
+        min-width="30">
 
     </el-table-column>
 
     <el-table-column
-        prop="isInvitor"
-        label="Idnetity"
-        min-width="100"
-    >
-      <template slot-scope="scope">
-        <el-tag
-            :type="scope.row.isInvitor === 0 ? 'primary' : 'success'"
-            disable-transitions><div v-if="scope.row.isInvitor===0" >Contact</div>
-          <div v-if="scope.row.isInvitor===1">Invitor</div>
-        </el-tag>
-      </template>
+        label="UnpaidBills"
+        prop="bill_unpaid_num"
+        min-width="30">
+
     </el-table-column>
 
   </el-table>
@@ -330,7 +337,7 @@ export default {
       formData.append('token', this.$store.state.token);
       this.$axios({
         method: 'post',
-        url: '/usermanage/check',
+        url: '/manager/getUserInfo',
         data: formData,
       })
           .then((res) => {

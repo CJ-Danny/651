@@ -193,7 +193,7 @@ export default {
       if (type == 0){
         this.$axios({
           method: 'post',
-          url: '/manager/getRentInfo',
+          url: '/manager/ManagerGetRentInfo',
           data: formData
         })
             .then((res) => {
@@ -214,8 +214,8 @@ export default {
               formData2.append("status", "2");  // Rejected
 
               Promise.all([
-                this.$axios.post('/manager/getRentInfo', formData1),
-                this.$axios.post('/manager/getRentInfo', formData2)
+                this.$axios.post('/manager/ManagerGetRentInfo', formData1),
+                this.$axios.post('/manager/ManagerGetRentInfo', formData2)
               ]).then(([res1, res2]) => {
                 if (res1.data.errno === 0 && res2.data.errno === 0) {
                   this.tableData = [...res1.data.data, ...res2.data.data];  // Combine results
