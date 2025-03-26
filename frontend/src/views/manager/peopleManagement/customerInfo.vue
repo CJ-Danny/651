@@ -8,11 +8,11 @@
     font-weight: 700;">
         Apartment Tenants List
         <br/>
-        <span style="color: black;font-size: 15px;line-height: 24px;
-    font-weight: 400;">
+        <span style="color: black;font-size: 15px;line-height: 24px;font-weight: 400;">
           <span style="color: red">&nbsp;{{count || 0}}&nbsp;</span> Registered Tenants in total
-                  </span>
+        </span>
       </div>
+      
       <div style="display: flex;align-items: center">
         <el-button type="primary" class="newButton" @click="dialogFormVisible = true" style="margin-left: 50px">New</el-button>
         <el-upload
@@ -59,6 +59,7 @@
         </div>
       </el-dialog>
     </el-col>
+    
     <el-col :span="5">
         <img src="../../../assets/login/logo-login-new.png" style="height: 70px;position: relative;top: 30px">
 
@@ -330,7 +331,6 @@ export default {
         }
       })
 
-
     },
     getAllCustomer(){
       const formData = new FormData();
@@ -446,8 +446,6 @@ export default {
 <style scoped>
 .formBackground{
   box-shadow: 0px -4px 14px 0px #A6BADE;
-
-
 }
 
 .simple-search-content {
