@@ -118,7 +118,7 @@ export default {
         this.index = 1
         this.setCardPosition();
         this.card.style.transition = "all 700ms ease 0s"
-      } else if (url === 'rooms' || url === 'roomsDetail' || url === 'rentRequests') {
+      } else if (url === 'roommanagement' || url === 'roomsDetail' || url === 'rentRequests') {
         this.index = 2
         this.setCardPosition();
         this.card.style.transition = "all 700ms ease 0s"
@@ -126,7 +126,7 @@ export default {
         this.index = 3
         this.setCardPosition();
         this.card.style.transition = "all 700ms ease 0s"
-      } else if (url === 'repair' || url === 'visitor') {
+      } else if (url === 'repairList' || url === 'visitor') {
         this.index = 4
         this.setCardPosition();
         this.card.style.transition = "all 700ms ease 0s"
