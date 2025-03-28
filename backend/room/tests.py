@@ -296,3 +296,58 @@ class CreateBillTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['errno'], 1000)
         self.assertEqual(response.json()['msg'], "wrong method")
+
+
+class PayBillTest(TestCase):
+    def setUp(self):
+        self.client = self.client_class()
+
+        self.user = User.objects.create(
+            userId=123,
+            userName="danny",
+            password="test",
+            email="test@gmail.com"
+        )
+
+        self.rent1 = Rent.objects.create(
+            rentId=1,
+            userId=self.user.userId,
+            roomId=1,
+            status=1,
+            startTime=timezone.now() - timezone.timedelta(days=10),
+            endTime=timezone.now() + timezone.timedelta(days=20),
+            applyTime=timezone.now() - timezone.timedelta(days=15)
+        )
+
+        self.bill1 = Bill.objects.create(
+            rentID=self.rent1.rentId,
+            createTime=timezone.now(),
+            due=timezone.now() + timezone.timedelta(days=30),
+            money=1000,
+            status=0
+        )
+
+    def test_pay_bill_success(self):
+        response = self.client.post(reverse('payBill'), {
+            'billID': self.bill1.billId,
+            'status': 1
+        })
+
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+
+        self.assertEqual(response_data['errno'], 0)
+        self.assertEqual(response_data['msg'], "success")
+
+        bill = Bill.objects.get(billId=self.bill1.billId)
+        self.assertEqual(bill.status, 1)
+
+    def test_pay_bill_wrong_method(self):
+        response = self.client.get(reverse('payBill'), {
+            'billID': self.bill1.billId,
+            'status': 1
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 1000)
+        self.assertEqual(response.json()['msg'], "wrong method")
