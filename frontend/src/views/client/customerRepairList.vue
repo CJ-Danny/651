@@ -153,47 +153,61 @@
       stripe
       style="width: 95%"
       empty-text="No rental history available">
-    <el-table-column
-        label="No." align="center"
-        width="100">
-      <template slot-scope="scope">
-        <span>{{ scope.$index + pageSize * (currentPage- 1) + 1 }}</span>
-      </template>
-    </el-table-column>
-    <el-table-column
-    prop="submitTime"
-      label="Submission Time"
-      sortable
-      width="180"
-      :formatter="formatDateTime">
-    </el-table-column>
-    <el-table-column
-        prop="roomNumber"
-        label="Room"
-        min-width="5"
-        align="center"
-    >
-    </el-table-column>
-    <el-table-column
-      prop="description"
-      label="Problem Description"
-      min-width="50 "
-      show-overflow-tooltip>
-  </el-table-column>
-    <el-table-column
-        prop="status"
-        label="Status"
-        width="200"
-        align="center"
-    >
-      <template v-slot="scope">
-        <div v-if="scope.row.status===0"><el-button type="info" plain size="small"> Unprocessed</el-button></div>
-        <div v-if="scope.row.status===1"><el-button type="warning" plain size="small"> Waiting</el-button></div>
-        <div v-if="scope.row.status===2||scope.row.status===4"><el-button type="success" plain size="small" @click="openDetail(scope.row)"> Complete</el-button></div>
-        <div v-if="scope.row.status===3"><el-button type="danger" plain size="small"> Time unavailable</el-button></div>
-      </template>
-    </el-table-column>
-  </el-table>
+      <el-table-column
+          label="No." align="center"
+          width="100">
+        <template slot-scope="scope">
+          <span>{{ scope.$index + pageSize * (currentPage- 1) + 1 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="submitTime"
+        label="Submission Time"
+        sortable
+        width="180"
+        :formatter="formatDateTime">
+      </el-table-column>
+
+      <el-table-column
+        prop="assignTime"
+        label="Assigned Time"
+        sortable
+        width="180"
+        :formatter="formatDateTime">
+      </el-table-column>
+
+      <el-table-column
+        prop="finishTime"
+        label="Completion Time"
+        sortable
+        width="180"
+        :formatter="formatDateTime">
+      </el-table-column>
+      <el-table-column
+          prop="roomNumber"
+          label="Room"
+          min-width="20"
+          align="center">
+      </el-table-column>
+      <el-table-column
+        prop="description"
+        label="Problem Description"
+        min-width="50"
+        show-overflow-tooltip>
+      </el-table-column>
+      <el-table-column
+          prop="status"
+          label="Status"
+          width="200"
+          align="center">
+        <template v-slot="scope">
+          <div v-if="scope.row.status===0"><el-button type="info" plain size="small"> Unprocessed</el-button></div>
+          <div v-if="scope.row.status===1"><el-button type="warning" plain size="small"> Waiting</el-button></div>
+          <div v-if="scope.row.status===2||scope.row.status===4"><el-button type="success" plain size="small" @click="openDetail(scope.row)"> Complete</el-button></div>
+          <div v-if="scope.row.status===3"><el-button type="danger" plain size="small"> Time unavailable</el-button></div>
+        </template>
+      </el-table-column>
+    </el-table>
     </div>
   </div>
 </template>
@@ -307,6 +321,12 @@ export default {
 
   methods: {
     formatDateTime(row, column, cellValue) {
+      // Check if the cellValue is null or has the default timestamp value
+      if (!cellValue || cellValue === "2000-01-01T00:00:00Z" || cellValue === "1999-12-31 19:00:00" || cellValue === "1999-12-31T19:00:00Z") {
+        return "N/A";
+      }
+      
+      // Otherwise format the date normally
       const date = new Date(cellValue);
       return date.toLocaleString('zh-CN', { 
         year: 'numeric',
