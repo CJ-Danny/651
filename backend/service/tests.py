@@ -187,3 +187,51 @@ class GetManagerOrderTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['errno'], 0)
         self.assertEqual(response.json()['data'], [])
+
+
+class FinishOrderTest(TestCase):
+    def setUp(self):
+        self.client = self.client_class()
+
+        self.user = User.objects.create(
+            userId=123,
+            userName="danny",
+            password="test",
+            email="test@gmail.com"
+        )
+
+        self.order = Order.objects.create(
+            userID=self.user.userId,
+            roomID=101,
+            description="Order description",
+            submitTime=timezone.now(),
+            assignTime=timezone.now(),
+            finishTime=timezone.now(),
+            status=1,
+            managerID=456,
+        )
+
+    def test_finish_order_success(self):
+        response = self.client.post(reverse('finishOrder'), {
+            'orderID': self.order.orderID,
+            'method': 'Credit Card'
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 0)
+        self.assertEqual(response.json()['msg'], "success")
+
+        self.order.refresh_from_db()
+        self.assertEqual(self.order.status, 2)
+        self.assertEqual(self.order.method, 'Credit Card')
+        self.assertTrue(self.order.finishTime)
+
+    def test_finish_order_wrong_method(self):
+        response = self.client.get(reverse('finishOrder'), {
+            'orderID': self.order.orderID,
+            'method': 'Credit Card'
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 1000)
+        self.assertEqual(response.json()['msg'], "wrong method")
