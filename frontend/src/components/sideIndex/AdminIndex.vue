@@ -88,8 +88,10 @@ export default {
 
     
     toList2() {
-      this.$router.push('/app/manager/room')
-    },
+  this.index = 2; 
+  this.setCardPosition();
+  this.$router.push('/app/manager/room');
+},
     
    
     toList3() {
