@@ -210,3 +210,89 @@ class GetBillsTest(TestCase):
         self.assertEqual(response.json()['errno'], 0)
         self.assertEqual(response.json()['msg'], "success")
         self.assertEqual(len(response.json()['bills']), 0)
+
+
+class CreateBillTest(TestCase):
+    def setUp(self):
+        self.client = self.client_class()
+
+        self.user = User.objects.create(
+            userId=123,
+            userName="danny",
+            password="test",
+            email="test@gmail.com"
+        )
+
+        self.rent1 = Rent.objects.create(
+            rentId=1,
+            userId=self.user.userId,
+            roomId=1,
+            status=1,
+            startTime=timezone.now() - timezone.timedelta(days=10),
+            endTime=timezone.now() + timezone.timedelta(days=20),
+            applyTime=timezone.now() - timezone.timedelta(days=15)
+        )
+
+    def test_create_bill_success(self):
+        response = self.client.post(reverse('createBill'), {
+            'rentID': self.rent1.rentId,
+            'due': '2025-04-30',
+            'money': 1000
+        })
+
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+
+        self.assertEqual(response_data['errno'], 0)
+        self.assertEqual(response_data['msg'], "bill created successfully")
+
+        bill = Bill.objects.get(rentID=self.rent1.rentId)
+        self.assertEqual(bill.due.strftime('%Y-%m-%d'), '2025-04-30')
+        self.assertEqual(bill.money, 1000)
+
+    def test_create_bill_missing_fields(self):
+        response = self.client.post(reverse('createBill'), {
+            'due': '2025-04-30',
+            'money': 1000
+        })
+
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+
+        self.assertEqual(response_data['errno'], 1001)
+        self.assertEqual(response_data['msg'], "missing rentID or due date")
+
+        response = self.client.post(reverse('createBill'), {
+            'rentID': self.rent1.rentId,
+            'money': 1000
+        })
+
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+
+        self.assertEqual(response_data['errno'], 1001)
+        self.assertEqual(response_data['msg'], "missing rentID or due date")
+
+    def test_create_bill_invalid_due_date_format(self):
+        response = self.client.post(reverse('createBill'), {
+            'rentID': self.rent1.rentId,
+            'due': '2025-31-04',
+            'money': 1000
+        })
+
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+
+        self.assertEqual(response_data['errno'], 1002)
+        self.assertEqual(response_data['msg'], "invalid due date format, expected 'YYYY-MM-DD'")
+
+    def test_create_bill_wrong_method(self):
+        response = self.client.get(reverse('createBill'), {
+            'rentID': self.rent1.rentId,
+            'due': '2025-04-30',
+            'money': 1000
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 1000)
+        self.assertEqual(response.json()['msg'], "wrong method")
