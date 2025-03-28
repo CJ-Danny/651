@@ -292,12 +292,18 @@ export default {
   },
 
   methods: {
+    // Added missing setTimeOut method that was referenced in the template
+    setTimeOut(row) {
+      // This method should return a CSS class name or nothing
+      // You can implement logic to highlight rows based on time criteria
+      return ''; // Default empty class
+    },
+
     formatDateTime(dateString) {
       if (!dateString || dateString.includes('2000-01-01')) return 'N/A';
       const date = new Date(dateString);
       return date.toLocaleString();
     },
-
     
     // Load room data
     loadRoomData() {
@@ -349,60 +355,128 @@ export default {
       });
     },
 
-    // Load orders based on route type
+    // Load orders based on route type and user type
     loadOrders() {
-        this.isLoading = true;
-        const formData = new FormData();
-        formData.append("token", this.$store.state.token);
-        formData.append("type", this.$route.query.type || '0');
-        formData.append("isUser", this.$store.state.userState);
+      this.isLoading = true;
+      const formData = new FormData();
+      formData.append("token", this.$store.state.token);
+      formData.append("type", this.$route.query.type || '0');
+      formData.append("isUser", this.$store.state.userState);
+      
+      // Get user type and ID from store
+      const userType = this.$store.state.userType || 1; // Default to manager type if undefined
+      const userID = this.$store.state.adminID; // Use adminID from the store
+      
+      console.log(`User information - Type: ${userType}, ID: ${userID || 'undefined'}`);
+      
+      // Select API endpoint based on user type
+      let url = '/service/getAllOrders'; // Default for managers
+      
+      // Only use repairman-specific endpoint if user is a repairman and has an ID
+      if (userType === 2 && userID) {
+        url = '/service/getManagerOrder';
+        formData.append("managerID", userID);
+        console.log(`Using repairman-specific endpoint with managerID: ${userID}`);
+      } else {
+        console.log(`Using general orders endpoint (either admin user or missing repairman ID)`);
+      }
+      
+      console.log(`Loading orders from: ${url}, User type: ${userType}, User ID: ${userID || 'not set'}`);
+      
+      this.$axios({
+        method: 'post',
+        url: url,
+        data: formData
+      })
+      .then((res) => {
+        if (res.data.errno === 0) {
+          // Filter orders based on current tab
+          let filteredOrders = res.data.data || [];
+          const type = this.$route.query.type || '0';
+          
+          if (type === '0') {
+            // Pending tab - only show orders with status 0 (not distributed) or 1 (in progress)
+            filteredOrders = filteredOrders.filter(order => order.status === 0 || order.status === 1);
+          } else if (type === '1') {
+            // Completed tab - only show orders with status 2 (finished) or 3 (error)
+            filteredOrders = filteredOrders.filter(order => order.status === 2 || order.status === 3);
+          }
+          
+          // Additional filtering for repairmen if we used the getAllOrders endpoint
+          if (userType === 2 && url === '/service/getAllOrders' && userID) {
+            filteredOrders = filteredOrders.filter(order => order.managerID === userID);
+            console.log(`Filtered orders by managerID ${userID} on client side`);
+          }
+          
+          // Process data to include additional room and repairman information
+          this.tableData = this.processOrderData(filteredOrders);
+          console.log(`Loaded ${this.tableData.length} orders after filtering`);
+        } else {
+          console.log("API Error:", res.data);
+          this.$message.error("Failed to load orders: " + (res.data.errmsg || "Unknown error"));
+          this.tableData = [];
+        }
+        this.isLoading = false;
+      })
+      .catch((err) => {
+        console.log("API Error:", err);
         
-        // Always use getAllOrders endpoint for all user types
-        const url = '/service/getAllOrders';
-        
-        this.$axios({
+        // If the getManagerOrder endpoint fails, fall back to getAllOrders
+        if (url === '/service/getManagerOrder') {
+          console.log("Falling back to getAllOrders endpoint");
+          
+          // Remove the managerID parameter if it was set
+          const newFormData = new FormData();
+          for (let pair of formData.entries()) {
+            if (pair[0] !== 'managerID') {
+              newFormData.append(pair[0], pair[1]);
+            }
+          }
+          
+          this.$axios({
             method: 'post',
-            url: url,
-            data: formData
-        })
-        .then((res) => {
+            url: '/service/getAllOrders',
+            data: newFormData
+          })
+          .then((res) => {
             if (res.data.errno === 0) {
-            // Filter orders based on current tab
-            let filteredOrders = res.data.data || [];
-            const type = this.$route.query.type || '0';
-            
-            if (type === '0') {
-                // Pending tab - only show orders with status 0 (not distributed) or 1 (in progress)
-                filteredOrders = filteredOrders.filter(order => order.status === 0 || order.status === 1);
-            } else if (type === '1') {
-                // Completed tab - only show orders with status 2 (finished) or 3 (error)
-                filteredOrders = filteredOrders.filter(order => order.status === 2 || order.status === 3);
-            }
-            
-            // If user is a manager (userType === 2), filter to only show their assigned orders
-            if (this.$store.state.userType === 2) {
-                const managerID = this.$store.state.userID;
-                if (managerID) {
-                filteredOrders = filteredOrders.filter(order => order.managerID === managerID);
-                }
-            }
-            
-            // Process data to include additional room and repairman information
-            this.tableData = this.processOrderData(filteredOrders);
+              // Filter by status
+              let fallbackOrders = res.data.data || [];
+              const type = this.$route.query.type || '0';
+              
+              if (type === '0') {
+                fallbackOrders = fallbackOrders.filter(order => order.status === 0 || order.status === 1);
+              } else if (type === '1') {
+                fallbackOrders = fallbackOrders.filter(order => order.status === 2 || order.status === 3);
+              }
+              
+              // Filter by managerID for repairmen
+              if (userType === 2 && userID) {
+                fallbackOrders = fallbackOrders.filter(order => order.managerID === userID);
+                console.log(`Filtered orders by managerID ${userID} on client side (fallback)`);
+              }
+              
+              this.tableData = this.processOrderData(fallbackOrders);
+              console.log(`Loaded ${this.tableData.length} orders after fallback and filtering`);
             } else {
-            console.log("API Error:", res.data);
-            this.$message.error("Failed to load orders: " + (res.data.errmsg || "Unknown error"));
-            this.tableData = [];
+              this.$message.error("Failed to load orders: " + (res.data.errmsg || "Unknown error"));
+              this.tableData = [];
             }
             this.isLoading = false;
-        })
-        .catch((err) => {
-            console.log("API Error:", err);
+          })
+          .catch((fallbackErr) => {
+            console.log("Fallback API Error:", fallbackErr);
             this.$message.error("Failed to load orders. Please try again later.");
             this.tableData = [];
             this.isLoading = false;
-        });
-        },
+          });
+        } else {
+          this.$message.error("Failed to load orders. Please try again later.");
+          this.tableData = [];
+          this.isLoading = false;
+        }
+      });
+    },
 
     // Process order data to include room and repairman information
     processOrderData(orders) {
@@ -438,9 +512,6 @@ export default {
         
         // Check if this order has been added to knowledge base
         const addedToKnowledge = this.addedToKnowledgeList.includes(order.orderID);
-        
-        // Log for debugging room mapping
-        console.log(`Order ${order.orderID} - RoomID: ${order.roomID}, Mapped to Room Number: ${roomNumber}`);
         
         return {
           ...order,
