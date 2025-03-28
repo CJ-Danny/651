@@ -124,7 +124,7 @@ export default {
 },
   show(rooms) {
     if (rooms.length === 0 || !rooms[0].rentID) {
-      this.$message.error('failed');
+      this.$message.error('Please select exactly one room');
       return;
     }
 

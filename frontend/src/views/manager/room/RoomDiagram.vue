@@ -109,14 +109,19 @@
     </div>
     <div v-else>
       <el-button @click="cancelMultiRent">Cancel</el-button>
-      <el-button type="primary" @click="confirmMultiRent" :disabled="selectedCount === 0">
-        Confirm
-      </el-button>
+      <el-button 
+  type="primary" 
+  @click="confirmMultiRent" 
+  :disabled="selectedCount === 0"
+  :title="selectedCount > 1 ? 'Please select only one room' : ''"
+>
+  Confirm
+</el-button>
     </div>
   </div>
   <div v-if="isMultiRenting">
     <div style="font-weight: bold; margin-top: 5px">
-      <span> Choose {{ selectedCount }} rooms </span>
+      <span> Choose {{ selectedCount }} room </span>
       <span>
         <el-button
           type="info"
@@ -255,11 +260,11 @@ import img5 from '@/assets/room-images/room5.jpg'
   },
 
       
-      startMultiRent() {
-        this.isMultiRenting = true;
-        this.isRoomSelected.fill(false);
-        this.selectedCount = 0;
-      },
+  startMultiRent() {
+  this.isMultiRenting = true;
+  this.isRoomSelected = Array(this.roomList.length).fill(false); 
+  this.selectedCount = 0;
+},
       clearSelect() {
         this.isRoomSelected.fill(false);
         this.selectedCount = 0;
@@ -281,29 +286,37 @@ import img5 from '@/assets/room-images/room5.jpg'
       async selectRoom($event, roomIdx) {
   if (!this.isMultiRenting) {
     try {
-          this.rentLoading = true;
-          
-         
-          const randomIndex = Math.floor(Math.random() * this.localRoomImages.length);
-          const selectedImg = this.localRoomImages[randomIndex];
+      this.rentLoading = true;
+      const randomIndex = Math.floor(Math.random() * this.localRoomImages.length);
+      const selectedImg = this.localRoomImages[randomIndex];
+      this.selectedRoom = {
+        ...this.roomList[roomIdx],
+        localImg: selectedImg,
+        price: this.roomList[roomIdx].price
+      };
+    } finally {
+      this.rentLoading = false;
+    }
+  } else {
+    
+    const room = this.roomList[roomIdx];
+    
+    const allowedStatus = [0, 1, 2, 3, 23];
+    
+   
+    if (!allowedStatus.includes(room.status)) return;
 
-          this.selectedRoom = {
-            ...this.roomList[roomIdx],
-            localImg: selectedImg, 
-            price: this.roomList[roomIdx].price
-          };
-        } finally {
-          this.rentLoading = false;
-        }
-      } 
-    else{
-    if (this.roomList[roomIdx].status !== 0 && this.roomList[roomIdx].status !== 1 && this.roomList[roomIdx].status !== 2 && this.roomList[roomIdx].status !== 3 && this.roomList[roomIdx].status !== 23) return;
-    this.selectedRoom = this.roomList[roomIdx];
-    if (this.isRoomSelected[roomIdx]) this.selectedCount--;
-    else this.selectedCount++;
-    this.isRoomSelected[roomIdx] = !this.isRoomSelected[roomIdx];
-    this.doUpdate++;}
-  
+    
+    this.isRoomSelected = this.isRoomSelected.map(() => false); 
+    
+    
+    this.$set(this.isRoomSelected, roomIdx, true);
+    
+    
+    this.selectedCount = 1;
+    this.doUpdate++;
+    
+  }
 },
       blurRoom() {
         this.selectedRoom = null;
