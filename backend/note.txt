@@ -9,3 +9,9 @@ root password: 651Team!
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '651Team!';
 
 nohup python manage.py runserver 0.0.0.0:8000 & >nohup.out
+18.117.136.172
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '651team!';
+CREATE USER 'root'@'%' IDENTIFIED BY '651team';
+
+GRANT ALL PRIVILEGES ON *.* TO 'danny'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;

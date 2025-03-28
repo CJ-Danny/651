@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="651" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="651">
+      <paths name="new651">
         <serverdata>
           <mappings>
-            <mapping deploy="/651/backend" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/backend" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

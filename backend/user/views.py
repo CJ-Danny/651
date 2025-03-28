@@ -213,7 +213,9 @@ def applyOrder(request):
         roomID=roomId,
         status=0,
         description=description,
-        submitTime=datetime.datetime.now()
+        submitTime=datetime.datetime.now(),
+        assignTime=datetime.datetime.now(),
+        finishTime=datetime.datetime.now()
     )
     order.save()
     return JsonResponse({'errno': 0, 'msg': "apply success"})
