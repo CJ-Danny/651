@@ -35,6 +35,29 @@
               </template>
           </el-table-column>
           
+          <!-- Assignment Time - Added column -->
+          <el-table-column
+              prop="assignTime"
+              label="Assignment Time"
+              width="160"
+              sortable>
+              <template slot-scope="scope">
+                {{ formatDateTime(scope.row.assignTime) }}
+              </template>
+          </el-table-column>
+          
+          <!-- Finish Time - Show only on completed orders page -->
+          <el-table-column
+              v-if="$route.query.type === '1'"
+              prop="finishTime"
+              label="Finish Time"
+              width="160"
+              sortable>
+              <template slot-scope="scope">
+                {{ formatDateTime(scope.row.finishTime) }}
+              </template>
+          </el-table-column>
+          
           <!-- Room Number -->
           <el-table-column
               prop="roomNumber"
@@ -47,6 +70,15 @@
           <el-table-column
               prop="description"
               label="Description"
+              min-width="200"
+              align="center">
+          </el-table-column>
+          
+          <!-- Solution - Show only on completed orders page -->
+          <el-table-column
+              v-if="$route.query.type === '1'"
+              prop="method"
+              label="Solution"
               min-width="200"
               align="center">
           </el-table-column>
@@ -75,23 +107,43 @@
             <template v-slot="scope">
                 <div class="operations-container">
                 <div v-if="scope.row.status===0 && $store.state.userType===1">
-                    <el-button type="primary" size="small" @click="openDialog(scope.row.orderID, scope.row.description)">Assign</el-button>
+                    <el-button type="primary" size="small" class="operation-button" @click="openDialog(scope.row.orderID, scope.row.description)">Assign</el-button>
                 </div>
                 <div v-else-if="scope.row.status===1 && $store.state.userType===2" class="status-with-button">
-                    <el-tag type="warning">In Progress</el-tag>
-                    <el-button type="success" size="small" @click="openWorkerDialog(scope.row.orderID)">Complete</el-button>
+                    <div class="status-tag-container">
+                      <el-tag type="warning">In Progress</el-tag>
+                    </div>
+                    <el-button type="success" size="small" class="operation-button" @click="openWorkerDialog(scope.row.orderID)">Complete</el-button>
                 </div>
                 <div v-else-if="scope.row.status===1">
-                    <el-tag type="warning">In Progress</el-tag>
+                    <div class="status-tag-container">
+                      <el-tag type="warning">In Progress</el-tag>
+                    </div>
+                </div>
+                <div v-else-if="scope.row.status===2 && $store.state.userType===1" class="status-with-button">
+                    <div class="status-tag-container">
+                      <el-tag type="success">Completed</el-tag>
+                    </div>
+                    <el-button type="warning" size="small" class="operation-button" @click="addToKnowledgeBase(scope.row)" 
+                              v-if="!scope.row.addedToKnowledge">Add to Knowledge</el-button>
+                    <div class="status-tag-container" v-else>
+                      <el-tag type="info">Added to KB</el-tag>
+                    </div>
                 </div>
                 <div v-else-if="scope.row.status===2">
-                    <el-tag type="success">Completed</el-tag>
+                    <div class="status-tag-container">
+                      <el-tag type="success">Completed</el-tag>
+                    </div>
                 </div>
                 <div v-else-if="scope.row.status===3">
-                    <el-tag type="danger">Error</el-tag>
+                    <div class="status-tag-container">
+                      <el-tag type="danger">Error</el-tag>
+                    </div>
                 </div>
                 <div v-else>
-                    <el-tag type="info">Not Assigned</el-tag>
+                    <div class="status-tag-container">
+                      <el-tag type="info">Not Assigned</el-tag>
+                    </div>
                 </div>
                 </div>
             </template>
@@ -128,7 +180,7 @@
 
         <!-- Assign Dialog for assigning repairman -->
         <div>
-          <el-dialog title="Assign Repairman" :visible.sync="dialogFormVisible" width="65%" top="2%">
+          <el-dialog title="Assign Repairman" :visible.sync="dialogFormVisible" width="75%" top="2%">
             <el-form :model="form">
               <el-form-item label="Issue Description" :label-width="formLabelWidth">
                 <div>{{this.tempDescription}}</div>
@@ -182,49 +234,6 @@
                   </el-table>
                 </div>
               </el-form-item>
-
-              <el-form-item label="Schedule" :label-width="formLabelWidth" style="margin-top: 20px">
-                <el-date-picker
-                    v-model="dateValue"
-                    value-format="yyyy-MM-dd"
-                    align="right"
-                    type="date"
-                    placeholder="Select date"
-                    :picker-options="pickerOptions">
-                </el-date-picker>
-                <el-time-select
-                    style="margin-left: 20px"
-                    placeholder="Start time"
-                    v-model="startTime"
-                    value-format="HH:mm:ss"
-                    :picker-options="{
-                    start: '08:30',
-                    step: '00:15',
-                    end: '18:30'
-                  }">
-                </el-time-select>
-                <el-time-select
-                    style="margin-left: 20px"
-                    placeholder="End time"
-                    value-format="HH:mm:ss"
-                    v-model="endTime"
-                    :picker-options="{
-                    start: '08:30',
-                    step: '00:15',
-                    end: '18:30',
-                    minTime: startTime
-                  }">
-                </el-time-select>
-              </el-form-item>
-
-              <el-form-item label="Notes" :label-width="formLabelWidth" style="margin-top: 20px">
-                <el-input
-                    type="textarea"
-                    :rows="3"
-                    placeholder="Additional notes for the repairman"
-                    v-model="feedback">
-                </el-input>
-              </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">Cancel</el-button>
@@ -256,34 +265,12 @@ export default {
       workFile: null,
       fileList: [],
       dialogFormVisible: false,
-      feedback: '',
       form: {
         managerID: null,
         orderID: null,
       },
       formLabelWidth: '120px',
-      startTime: '',
-      endTime: '',
-      dateValue: '',
-      currentRow: null,
-      pickerOptions: {
-        disabledDate(time) {
-          return time.getTime() < (Date.now() - 3600 * 1000 * 24)
-        },
-        shortcuts: [{
-          text: 'Today',
-          onClick(picker) {
-            picker.$emit('pick', new Date());
-          }
-        }, {
-          text: 'Tomorrow',
-          onClick(picker) {
-            const date = new Date();
-            date.setTime(date.getTime() + 3600 * 1000 * 24);
-            picker.$emit('pick', date);
-          }
-        }]
-      },
+      addedToKnowledgeList: [], // Track which orders have been added to KB
     }
   },
 
@@ -311,6 +298,7 @@ export default {
       return date.toLocaleString();
     },
 
+    
     // Load room data
     loadRoomData() {
       this.$axios({
@@ -320,6 +308,14 @@ export default {
       .then((res) => {
         if (res.data && res.data.data) {
           this.roomData = res.data.data;
+          
+          // Log room data for debugging
+          console.log("Room data loaded:", this.roomData);
+          
+          // Process orders again with the updated room data
+          if (this.tableData.length > 0) {
+            this.tableData = this.processOrderData(this.tableData.map(row => ({...row})));
+          }
         } else {
           console.log("Failed to load room data");
           this.roomData = []; // Initialize as empty array if failed
@@ -413,7 +409,7 @@ export default {
       return orders.map(order => {
         let repairmanName = 'Not assigned';
         let repairmanEmail = 'N/A';
-        let roomNumber = `Room ${order.roomID}`;
+        let roomNumber = '';
         
         // If there's a valid managerID, find matching repairman data
         if (order.managerID > 0 && this.workerData.length > 0) {
@@ -430,16 +426,28 @@ export default {
         // Get room number for this order
         if (this.roomData && this.roomData.length > 0) {
           const room = this.roomData.find(r => r.roomID === order.roomID);
-          if (room) {
+          if (room && room.roomNumber) {
             roomNumber = room.roomNumber;
           }
         }
+        
+        // If room number is still empty, use fallback
+        if (!roomNumber) {
+          roomNumber = order.roomID ? `${order.roomID}` : 'N/A';
+        }
+        
+        // Check if this order has been added to knowledge base
+        const addedToKnowledge = this.addedToKnowledgeList.includes(order.orderID);
+        
+        // Log for debugging room mapping
+        console.log(`Order ${order.orderID} - RoomID: ${order.roomID}, Mapped to Room Number: ${roomNumber}`);
         
         return {
           ...order,
           roomNumber: roomNumber,
           repairmanName: repairmanName,
-          repairmanEmail: repairmanEmail
+          repairmanEmail: repairmanEmail,
+          addedToKnowledge: addedToKnowledge
         };
       });
     },
@@ -468,23 +476,10 @@ export default {
       this.fixID = ID;
     },
     
-    onChangeUpload(file) {
-      this.workFile = file;
-    },
-    
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-
     // Assign repairman to the order
     assignRepairman() {
       if (!this.form.managerID) {
         this.$message.warning("Please select a repairman");
-        return;
-      }
-      
-      if (!this.dateValue || !this.startTime || !this.endTime) {
-        this.$message.warning("Please select date and time");
         return;
       }
 
@@ -492,9 +487,6 @@ export default {
       formData.append("token", this.$store.state.token);
       formData.append("orderID", this.form.orderID);
       formData.append("managerID", this.form.managerID);
-      formData.append("feedback", this.feedback);
-      formData.append("startTime", this.dateValue + " " + this.startTime);
-      formData.append("endTime", this.dateValue + " " + this.endTime);
       
       this.$axios({
         method: 'post',
@@ -517,82 +509,96 @@ export default {
     },
 
     // Submit solution for the order
-    // Corrected submitSolution method with proper parameter names
     submitSolution() {
-    if (!this.solveMethod) {
+      if (!this.solveMethod) {
         this.$message.warning("Please enter solution details");
         return;
-    }
-    
-    const formData = new FormData();
-    formData.append("token", this.$store.state.token);
-    formData.append("orderID", this.fixID);
-    formData.append("method", this.solveMethod); // Changed from "solution" to "method"
-    
-    console.log("Submitting with orderID:", this.fixID);
-    
-    this.$axios({
+      }
+      
+      const formData = new FormData();
+      formData.append("token", this.$store.state.token);
+      formData.append("orderID", this.fixID);
+      formData.append("method", this.solveMethod); // Changed from "solution" to "method"
+      
+      console.log("Submitting with orderID:", this.fixID);
+      
+      this.$axios({
         method: 'post',
         url: '/service/finishOrder',
         data: formData
-    })
-    .then((res) => {
+      })
+      .then((res) => {
         console.log("API response:", res.data);
         if (res.data.errno === 0) {
-        this.dialogFormVis2 = false;
-        this.$message.success("Order completed successfully");
-        
-        // Add to knowledge base
-        this.addToKnowledgeBase();
-        
-        // Reload orders
-        this.loadOrders();
+          this.dialogFormVis2 = false;
+          this.$message.success("Order completed successfully");
+          
+          // Remove automatic addition to knowledge base
+          // this.addToKnowledgeBase();
+          
+          // Reload orders
+          this.loadOrders();
         } else {
-        this.$message.error("Failed to complete order: " + (res.data.errmsg || "Unknown error"));
+          this.$message.error("Failed to complete order: " + (res.data.errmsg || "Unknown error"));
         }
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         console.error("Error details:", err);
         this.$message.error("Server error when completing order");
-    });
+      });
     },
 
-    // Add to knowledge base method
-    addToKnowledgeBase() {
-    // Find the current order to get the problem description
-    const currentOrder = this.tableData.find(order => order.orderID === this.fixID);
-    
-    if (!currentOrder) {
-        console.warn("Could not find order details for knowledge base entry");
+    // New method to add to knowledge base
+    addToKnowledgeBase(row) {
+      // Check if we have the necessary data
+      if (!row.description || !row.method) {
+        this.$message.warning("Missing problem description or solution method");
         return;
-    }
-    
-    const problemDescription = currentOrder.description || "";
-    
-    const knowledgeData = new FormData();
-    knowledgeData.append("token", this.$store.state.token);
-    knowledgeData.append("problem", problemDescription);
-    knowledgeData.append("solution", this.solveMethod);
-    
-    this.$axios({
+      }
+      
+      const knowledgeData = new FormData();
+      knowledgeData.append("token", this.$store.state.token);
+      knowledgeData.append("problem", row.description);
+      knowledgeData.append("solution", row.method);
+      
+      // Show loading message
+      const loadingMessage = this.$message({
+        message: 'Adding to knowledge base...',
+        type: 'info',
+        duration: 0
+      });
+      
+      this.$axios({
         method: 'post',
         url: '/manager/addKnowledge',
         data: knowledgeData
-    })
-    .then((res) => {
-        console.log("Knowledge base API response:", res.data);
+      })
+      .then((res) => {
+        // Close loading message
+        loadingMessage.close();
         
         if (res.data.errno === 0) {
-        this.$message.success("Solution added to knowledge base");
+          this.$message.success("Solution added to knowledge base");
+          
+          // Add to our local tracked list of orders added to KB
+          this.addedToKnowledgeList.push(row.orderID);
+          
+          // Update the table row to show it's been added
+          const index = this.tableData.findIndex(item => item.orderID === row.orderID);
+          if (index !== -1) {
+            this.$set(this.tableData[index], 'addedToKnowledge', true);
+          }
         } else {
-        console.warn("Knowledge base API returned error:", res.data);
-        this.$message.warning("Order completed but could not add to knowledge base");
+          this.$message.error("Failed to add to knowledge base: " + (res.data.errmsg || "Unknown error"));
         }
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
+        // Close loading message
+        loadingMessage.close();
+        
         console.error("Error adding to knowledge base:", err);
-        this.$message.warning("Order completed but could not add to knowledge base");
-    });
+        this.$message.error("Server error when adding to knowledge base");
+      });
     }
   }
 }
@@ -604,23 +610,33 @@ export default {
   text-align: center;
   padding-bottom: 50px;
 }
-</style>
 
-<style>
-.el-table .warning-row {
-  background: rgba(245,108,108, 0.12);
-}
-
-.el-table .stripe-row {
-  background: rgb(250,250,250);
-}
-</style>
-
-<style>
-.operations-container {
+.status-tag-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
+}
+
+.status-tag-container .el-tag {
+  width: 140px;
+  text-align: center;
+  display: inline-block;
+  padding: 8px 0;
+  height: auto;
+  line-height: 1.5;
+}
+
+.operation-button {
+  width: 140px;
+  margin: 0 auto;
+  padding: 8px 0;
+  height: auto;
+  line-height: 1.5;
+}
+
+.el-button--warning {
+  background-color: #F8C037; /* Yellow color */
+  border-color: #E6A23C;
 }
 
 .status-with-button {
@@ -630,7 +646,19 @@ export default {
   gap: 8px;
 }
 
-.el-tag {
-  margin-right: 0;
+.operations-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
+<style>
+.el-table .warning-row {
+  background: rgba(245,108,108, 0.12);
+}
+
+.el-table .stripe-row {
+  background: rgb(250,250,250);
 }
 </style>
