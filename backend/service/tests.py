@@ -1,12 +1,8 @@
 import datetime
 
-from manager.models import *
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
-from room.models import *
-from .models import *
-from user.token import *
 from user.models import *
 from service.models import *
 
