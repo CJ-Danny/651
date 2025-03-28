@@ -251,3 +251,67 @@ class GetOrdersTest(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.json()['errno'], 1002)
             self.assertEqual(response.json()['msg'], 'token error')
+
+
+class ApplyOrderTest(TestCase):
+    def setUp(self):
+        self.client = self.client_class()
+
+        self.user = User.objects.create(
+            userId=123,
+            userName="danny",
+            password="test",
+            email="test@gmail.com"
+        )
+
+        self.token = GetToken(self.user.email, self.user.userId)
+        self.token = self.token.decode('utf-8')
+
+    def test_apply_order_success(self):
+        response = self.client.post(reverse('applyOrder'), {
+            'token': self.token,
+            'roomId': 101,
+            'description': 'Fix the air conditioning.'
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 0)
+        self.assertEqual(response.json()['msg'], "apply success")
+        self.assertTrue(Order.objects.filter(userID=self.user.userId, roomID=101).exists())
+
+    def test_apply_order_wrong_method(self):
+        response = self.client.get(reverse('applyOrder'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['errno'], 1000)
+        self.assertEqual(response.json()['msg'], "wrong method")
+
+    def test_apply_order_invalid_token(self):
+        def mock_check(token):
+            return None, None
+
+        with self.settings(CHECK_FUNCTION=mock_check):
+            response = self.client.post(reverse('applyOrder'), {
+                'token': 'invalid_token',
+                'roomId': 101,
+                'description': 'Fix the air conditioning.'
+            })
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json()['errno'], 1002)
+            self.assertEqual(response.json()['msg'], 'token error')
+
+    def test_apply_order_user_not_found(self):
+        def mock_check(token):
+            return 999, None
+
+        with self.settings(CHECK_FUNCTION=mock_check):
+            response = self.client.post(reverse('applyOrder'), {
+                'token': 'valid_token_for_non_existent_user',
+                'roomId': 101,
+                'description': 'Fix the air conditioning.'
+            })
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json()['errno'], 1002)
+            self.assertEqual(response.json()['msg'], 'token error')
