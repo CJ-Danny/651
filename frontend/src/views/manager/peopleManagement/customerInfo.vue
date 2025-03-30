@@ -13,19 +13,6 @@
         </span>
       </div>
       
-      <div style="display: flex;align-items: center">
-        <el-button type="primary" class="newButton" @click="dialogFormVisible = true" style="margin-left: 50px">New</el-button>
-        <el-upload
-            class="upload-demo"
-            :action=uploadFileUrl
-            :http-request="uploadFile"
-            :limit="1"
-            :file-list="fileList"
-            :show-file-list="false">
-          <el-button size="primary" type="primary" style="margin-left: 20px">Import</el-button>
-        </el-upload>
-        <el-button class="button1" icon="el-icon-download" type="text" @click="download">Download Information Template</el-button>
-      </div>
 
       <el-dialog title="Create New Tenant" :visible.sync="dialogFormVisible" >
         <el-form :model="form" :rules="formRules" ref="formRef">
@@ -64,12 +51,7 @@
         <img src="../../../assets/login/logo-login-new.png" style="height: 70px;position: relative;top: 30px">
 
       <div class="simple-search-content" style="height: 4px;position: relative;top:30px;left:-100px">
-        <el-input  v-model="searchInput" @keyup.enter.native="searchForCustomer"
-                  style="width: 20vw;font-size: 16px;font-weight: 600;height: 40px">
 
-          <el-button  slot="append" @click="searchForCustomer()"><img src="../../../assets/peopleManagement/icon4.png"
-                                                                style="position: relative;right: 5px;top:1px;height: 20px;" /></el-button>
-        </el-input>
       </div>
 
     </el-col>
