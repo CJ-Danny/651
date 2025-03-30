@@ -26,6 +26,9 @@ def getAllOrders(request):
     if request.method != 'POST':
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})
     orders = list(Order.objects.all().values())
+    for order in orders:
+        room = Room.objects.get(roomId=order['roomID'])
+        order['roomNumber'] = room.number
     return JsonResponse({'errno': 0, 'data': orders})
 
 
@@ -49,6 +52,9 @@ def getManagerOrder(request):
         return JsonResponse({'errno': 1000, 'msg': "wrong method"})
     managerID = str(request.POST.get('managerID'))
     orders = list(Order.objects.filter(managerID=managerID).values())
+    for order in orders:
+        room = Room.objects.get(roomId=order['roomID'])
+        order['roomNumber'] = room.number
     return JsonResponse({'errno': 0, 'data': orders})
 
 
