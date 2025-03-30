@@ -182,11 +182,11 @@
         <div>
           <el-dialog title="Assign Repairman" :visible.sync="dialogFormVisible" width="75%" top="2%">
             <el-form :model="form">
-              <el-form-item label="Issue Description" :label-width="formLabelWidth">
+              <el-form-item label="Issue Description: " :label-width="formLabelWidth">
                 <div>{{this.tempDescription}}</div>
               </el-form-item>
 
-              <el-form-item label="Select Repairman" :label-width="formLabelWidth">
+              <el-form-item label="Select Repairman: " :label-width="formLabelWidth">
                 <div>
                   <el-table
                       ref="singleTable"
@@ -261,21 +261,17 @@ export default {
       pageSize: 10,
       workerData: [],
       tableData: [],
-      roomData: [], // Store room information
-      workFile: null,
-      fileList: [],
       dialogFormVisible: false,
       form: {
         managerID: null,
         orderID: null,
       },
-      formLabelWidth: '120px',
+      formLabelWidth: '180px',
       addedToKnowledgeList: [], // Track which orders have been added to KB
     }
   },
 
   created() {
-    this.loadRoomData();
     this.loadRepairmen();
     this.loadOrders();
   },
@@ -292,47 +288,18 @@ export default {
   },
 
   methods: {
-    // Added missing setTimeOut method that was referenced in the template
+    // Simple timeout check method
     setTimeOut(row) {
-      // This method should return a CSS class name or nothing
       // You can implement logic to highlight rows based on time criteria
       return ''; // Default empty class
     },
 
     formatDateTime(dateString) {
-      if (!dateString || dateString.includes('2000-01-01')) return 'N/A';
+      if (!dateString || dateString.includes('2000-01-01')) return '—';
       const date = new Date(dateString);
       return date.toLocaleString();
     },
     
-    // Load room data
-    loadRoomData() {
-      this.$axios({
-        method: 'get',
-        url: '/room/getRoomsInfo'
-      })
-      .then((res) => {
-        if (res.data && res.data.data) {
-          this.roomData = res.data.data;
-          
-          // Log room data for debugging
-          console.log("Room data loaded:", this.roomData);
-          
-          // Process orders again with the updated room data
-          if (this.tableData.length > 0) {
-            this.tableData = this.processOrderData(this.tableData.map(row => ({...row})));
-          }
-        } else {
-          console.log("Failed to load room data");
-          this.roomData = []; // Initialize as empty array if failed
-        }
-      })
-      .catch((err) => {
-        console.log("Error loading room data:", err);
-        this.roomData = []; // Initialize as empty array if failed
-      });
-    },
-
     // Load repairmen for assignment
     loadRepairmen() {
       const formData = new FormData()
@@ -367,8 +334,6 @@ export default {
       const userType = this.$store.state.userType || 1; // Default to manager type if undefined
       const userID = this.$store.state.adminID; // Use adminID from the store
       
-      console.log(`User information - Type: ${userType}, ID: ${userID || 'undefined'}`);
-      
       // Select API endpoint based on user type
       let url = '/service/getAllOrders'; // Default for managers
       
@@ -376,12 +341,7 @@ export default {
       if (userType === 2 && userID) {
         url = '/service/getManagerOrder';
         formData.append("managerID", userID);
-        console.log(`Using repairman-specific endpoint with managerID: ${userID}`);
-      } else {
-        console.log(`Using general orders endpoint (either admin user or missing repairman ID)`);
       }
-      
-      console.log(`Loading orders from: ${url}, User type: ${userType}, User ID: ${userID || 'not set'}`);
       
       this.$axios({
         method: 'post',
@@ -405,12 +365,10 @@ export default {
           // Additional filtering for repairmen if we used the getAllOrders endpoint
           if (userType === 2 && url === '/service/getAllOrders' && userID) {
             filteredOrders = filteredOrders.filter(order => order.managerID === userID);
-            console.log(`Filtered orders by managerID ${userID} on client side`);
           }
           
-          // Process data to include additional room and repairman information
+          // Process data to include additional repairman information
           this.tableData = this.processOrderData(filteredOrders);
-          console.log(`Loaded ${this.tableData.length} orders after filtering`);
         } else {
           console.log("API Error:", res.data);
           this.$message.error("Failed to load orders: " + (res.data.errmsg || "Unknown error"));
@@ -453,11 +411,9 @@ export default {
               // Filter by managerID for repairmen
               if (userType === 2 && userID) {
                 fallbackOrders = fallbackOrders.filter(order => order.managerID === userID);
-                console.log(`Filtered orders by managerID ${userID} on client side (fallback)`);
               }
               
               this.tableData = this.processOrderData(fallbackOrders);
-              console.log(`Loaded ${this.tableData.length} orders after fallback and filtering`);
             } else {
               this.$message.error("Failed to load orders: " + (res.data.errmsg || "Unknown error"));
               this.tableData = [];
@@ -478,12 +434,11 @@ export default {
       });
     },
 
-    // Process order data to include room and repairman information
+    // Process order data to include repairman information only
     processOrderData(orders) {
       return orders.map(order => {
         let repairmanName = 'Not assigned';
-        let repairmanEmail = 'N/A';
-        let roomNumber = '';
+        let repairmanEmail = '—';
         
         // If there's a valid managerID, find matching repairman data
         if (order.managerID > 0 && this.workerData.length > 0) {
@@ -497,25 +452,11 @@ export default {
           }
         }
         
-        // Get room number for this order
-        if (this.roomData && this.roomData.length > 0) {
-          const room = this.roomData.find(r => r.roomID === order.roomID);
-          if (room && room.roomNumber) {
-            roomNumber = room.roomNumber;
-          }
-        }
-        
-        // If room number is still empty, use fallback
-        if (!roomNumber) {
-          roomNumber = order.roomID ? `${order.roomID}` : 'N/A';
-        }
-        
         // Check if this order has been added to knowledge base
         const addedToKnowledge = this.addedToKnowledgeList.includes(order.orderID);
         
         return {
           ...order,
-          roomNumber: roomNumber,
           repairmanName: repairmanName,
           repairmanEmail: repairmanEmail,
           addedToKnowledge: addedToKnowledge
@@ -589,9 +530,7 @@ export default {
       const formData = new FormData();
       formData.append("token", this.$store.state.token);
       formData.append("orderID", this.fixID);
-      formData.append("method", this.solveMethod); // Changed from "solution" to "method"
-      
-      console.log("Submitting with orderID:", this.fixID);
+      formData.append("method", this.solveMethod);
       
       this.$axios({
         method: 'post',
@@ -599,15 +538,9 @@ export default {
         data: formData
       })
       .then((res) => {
-        console.log("API response:", res.data);
         if (res.data.errno === 0) {
           this.dialogFormVis2 = false;
           this.$message.success("Order completed successfully");
-          
-          // Remove automatic addition to knowledge base
-          // this.addToKnowledgeBase();
-          
-          // Reload orders
           this.loadOrders();
         } else {
           this.$message.error("Failed to complete order: " + (res.data.errmsg || "Unknown error"));
@@ -619,7 +552,7 @@ export default {
       });
     },
 
-    // New method to add to knowledge base
+    // Add to knowledge base
     addToKnowledgeBase(row) {
       // Check if we have the necessary data
       if (!row.description || !row.method) {
