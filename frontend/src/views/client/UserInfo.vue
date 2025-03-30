@@ -80,7 +80,7 @@
     <el-dialog
       title="Room Details"
       :visible.sync="roomDialogVisible"
-      width="30%"
+      width="35%"
       center
       top="5vh"
       :append-to-body="true"
@@ -97,7 +97,11 @@
         <div v-if="currentRoomDetails.bills && currentRoomDetails.bills.length > 0">
           <h3 style="margin-top: 20px">Bills</h3>
           <el-table :data="currentRoomDetails.bills" style="width: 100%">
-            <el-table-column prop="billId" label="Bill ID" width="80"></el-table-column>
+            <el-table-column label="No." width="80">
+              <template slot-scope="scope">
+                {{ scope.$index + 1 }}
+              </template>
+            </el-table-column>
             <el-table-column label="Amount" width="120">
               <template slot-scope="scope">
                 {{ scope.row.money }} CAD
@@ -460,21 +464,20 @@ export default {
   overflow: hidden;
   border-radius: 4px;
   width: 100%;
-  /* Create a container with 4:3 aspect ratio */
   position: relative;
-  padding-top: 60%; /* 3/4 = 0.75 = 75% for 4:3 ratio */
+  padding-top: 40%; /* 3/4 = 0.75 = 75% for 4:3 ratio */
   /* For 5:3 ratio, use 60% (3/5 = 0.6 = 60%) */
   /* padding-top: 60%; */
 }
 
 .room-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Dialog styles */

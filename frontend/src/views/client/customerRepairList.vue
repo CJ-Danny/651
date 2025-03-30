@@ -17,49 +17,16 @@
       <el-dialog title="Submit new repair orders" :visible.sync="dialogFormVisible">
         <el-form :model="form" :rules="rules">
           <el-form-item label="roomNumber" :label-width="formLabelWidth" prop="roomNumber">
-            <el-select v-model="form.roomID" placeholder="Please Select">
+            <el-select v-model="form.roomNumber" placeholder="Please Select">
               <el-option
                   v-for="item in roomOptions"
-                  :key="item.roomId"
+                  :key="item.roomNumber"
                   :label="item.roomNumber"
-                  :value="item.roomId">
+                  :value="item.roomNumber">
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="Contact name" :label-width="formLabelWidth" prop="contactPerson">
-            <el-input v-model="form.contactPerson" placeholder="Please enter"></el-input>
-          </el-form-item>
-          <el-form-item label="phone number" :label-width="formLabelWidth" prop="contactNumber">
-            <el-input v-model="form.contactNumber" placeholder="Please enter"></el-input>
-          </el-form-item>
-          <el-form-item label="Expected time" :label-width="formLabelWidth" prop="startDate">
-            <el-date-picker
-                v-model="form.startDate"
-                type="date"
-                format="yyyy . MM . dd"
-                value-format="yyyy-MM-dd"
-                placeholder="startDate"
-                :picker-options="pickerOptions"
-            />
-            <el-select v-model="form.startTime" placeholder="Please Select" style="margin-left: 20px">
-              <el-option label="morning" value="08:00:00"/>
-              <el-option label="afternoon" value="14:00:00"/>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Alternative time" :label-width="formLabelWidth" prop="date2">
-            <el-date-picker
-                v-model="form.date2"
-                type="date"
-                format="yyyy . MM . dd"
-                value-format="yyyy-MM-dd"
-                placeholder="startDate"
-                :picker-options="pickerOptions"
-            />
-            <el-select v-model="form.time2" placeholder="Please Select" style="margin-left: 20px">
-              <el-option label="morning" value="08:00:00"/>
-              <el-option label="afternoon" value="14:00:00"/>
-            </el-select>
-          </el-form-item>
+          
           <el-form-item label="Description" :label-width="formLabelWidth" prop="description">
             <el-input type="textarea" v-model="form.description" :rows="5" placeholder="Describe the problem"></el-input>
           </el-form-item>
@@ -232,7 +199,7 @@ export default {
       ],
       dialogFormVisible: false,
       form: {
-        roomID:'',
+        roomNumber:'',
         description:'',
         contactPerson:'',
         contactNumber:'',
@@ -301,7 +268,7 @@ export default {
           if (res.data.errno === 0) {
             this.tableData = res.data.data.map(item => ({
               ...item,
-              roomNumber: `Room ${item.roomID}`, 
+              roomNumber: `${item.roomNumber}`, 
               
               solvePerson: "-", 
               startTime: "-"  
@@ -323,7 +290,7 @@ export default {
     formatDateTime(row, column, cellValue) {
       // Check if the cellValue is null or has the default timestamp value
       if (!cellValue || cellValue === "2000-01-01T00:00:00Z" || cellValue === "1999-12-31 19:00:00" || cellValue === "1999-12-31T19:00:00Z") {
-        return "N/A";
+        return "—";
       }
       
       // Otherwise format the date normally
@@ -344,27 +311,27 @@ export default {
     },
     
     fetchRoomOptions() {
-  const formData = new FormData();
-  formData.append("token", this.$store.state.token);
-  
-  this.$axios({
-    method: 'post',
-    url: 'user/getHomeInfo',
-    data: formData
-  })
-  .then((res) => {
-    if (res.data.errno === 0) {
-      this.roomOptions = res.data.data.rentList; 
-      console.log("Successful:", this.roomOptions);
-    } else {
-      this.$message.error("Failed to load room data");
-    }
-  })
-  .catch((err) => {
-    console.log("Fail:", err);
-    this.$message.error("Network error");
-  });
-},
+      const formData = new FormData();
+      formData.append("token", this.$store.state.token);
+      
+      this.$axios({
+        method: 'post',
+        url: 'user/getHomeInfo',
+        data: formData
+      })
+      .then((res) => {
+        if (res.data.errno === 0) {
+          this.roomOptions = res.data.data.rentList; 
+          console.log("Successful:", this.roomOptions);
+        } else {
+          this.$message.error("Failed to load room data");
+        }
+      })
+      .catch((err) => {
+        console.log("Fail:", err);
+        this.$message.error("Network error");
+      });
+    },
     handleSizeChange(val) {
       this.pageSize = val;
       console.log(this.pageSize);
@@ -384,7 +351,7 @@ export default {
     createOrder(){
       const formData = new FormData()
       formData.append("token", this.$store.state.token);
-      formData.append("roomId",this.form.roomID);
+      formData.append("room",this.form.roomNumber);
       formData.append("description",this.form.description);
       formData.append("contactName",this.form.contactPerson);
       formData.append("contactPhone",this.form.contactNumber);
