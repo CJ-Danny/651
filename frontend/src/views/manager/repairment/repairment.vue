@@ -16,12 +16,13 @@
             style="width: 95%"
             v-loading="isLoading"
             >
-          <!-- Order Number -->
+          <!-- Sequential Number -->
           <el-table-column
-              prop="orderID"
-              label="Order #"
-              width="80"
-              align="center">
+              label="#"
+              type="index"
+              width="60"
+              align="center"
+              :index="sequentialIndex">
           </el-table-column>
           
           <!-- Submission Time -->
@@ -288,6 +289,11 @@ export default {
   },
 
   methods: {
+    // Method for sequential index calculation
+    sequentialIndex(index) {
+      return (this.currentPage - 1) * this.pageSize + index + 1;
+    },
+    
     // Simple timeout check method
     setTimeOut(row) {
       // You can implement logic to highlight rows based on time criteria
@@ -369,6 +375,9 @@ export default {
           
           // Process data to include additional repairman information
           this.tableData = this.processOrderData(filteredOrders);
+          
+          // Sort orders by orderID to ensure consistent sequencing
+          this.tableData.sort((a, b) => a.orderID - b.orderID);
         } else {
           console.log("API Error:", res.data);
           this.$message.error("Failed to load orders: " + (res.data.errmsg || "Unknown error"));
@@ -414,6 +423,9 @@ export default {
               }
               
               this.tableData = this.processOrderData(fallbackOrders);
+              
+              // Sort orders by orderID to ensure consistent sequencing
+              this.tableData.sort((a, b) => a.orderID - b.orderID);
             } else {
               this.$message.error("Failed to load orders: " + (res.data.errmsg || "Unknown error"));
               this.tableData = [];
@@ -421,7 +433,7 @@ export default {
             this.isLoading = false;
           })
           .catch((fallbackErr) => {
-            console.log("Fallback API Error:", fallbackErr);
+            console.error("Fallback API Error:", fallbackErr);
             this.$message.error("Failed to load orders. Please try again later.");
             this.tableData = [];
             this.isLoading = false;
