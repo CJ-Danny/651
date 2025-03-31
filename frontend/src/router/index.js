@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import store from '@/store/index1' 
+import store from '@/store/index' 
 
 let originPush =  VueRouter.prototype.push;  
 
