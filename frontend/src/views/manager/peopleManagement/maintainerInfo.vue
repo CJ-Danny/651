@@ -45,12 +45,7 @@
               <el-option label="Mechanic" value=3></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item prop="status" label="Status" :label-width="formLabelWidth">
-            <el-select v-model="form.status" placeholder="Please select a status">
-              <el-option label="Busy" value=0></el-option>
-              <el-option label="Available" value=1></el-option>
-            </el-select>
-          </el-form-item>
+
         </el-form>
 
         <div slot="footer" class="dialog-footer">
@@ -120,20 +115,7 @@ border-top-left-radius: 20px;border-top-right-radius: 20px;display: flex;flex-di
 
           </template>
         </el-table-column>
-        <el-table-column
-            prop="status"
-            label="Status"
-            width="100"
-            >
-          <template slot-scope="scope">
-            <el-tag
-    :type="scope.row.status ? 'success' : 'danger'"
-    disable-transitions>
-  <div v-if="scope.row.status">Available</div>
-  <div v-else>Unavailable</div>
-</el-tag>
-          </template>
-        </el-table-column>
+
         
         <el-table-column
             label="Finished Orders"
@@ -182,7 +164,7 @@ export default {
         password: '',
         email: '',
         type:'',
-        status:''
+        //status:''
       },
       formRules:{
         name:[
@@ -198,9 +180,9 @@ export default {
         type:[
           {required:true, message: 'Please select type', trigger: 'change' }
         ],
-        status: [
-          { required: true, message: 'Please select status', trigger: 'change' }
-        ]
+        //status: [
+        //  { required: true, message: 'Please select status', trigger: 'change' }
+        //]
       },
       deleteDialogVisible: false,
       deleteConfirmVisible: false,
@@ -239,7 +221,7 @@ export default {
           formData.append('password', this.form.password);
           formData.append('email', this.form.email);
           formData.append('type', this.form.type);
-          formData.append('status', this.form.status);
+          //formData.append('status', this.form.status);
           this.$axios({
             method: 'post',
             url: '/manager/addManager',
@@ -257,13 +239,13 @@ export default {
                     message: 'success',
                     type: 'success'
                   });
-                  this.getAllCustomer()
+                  this.getAllFixer()
                   this.form={ 
                     name: '',
                     password: '',
                     email: '',
                     type: '',
-                    status: ''
+                    //status: ''
                   }
                 }else{
                   this.$message.error("failed")

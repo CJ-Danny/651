@@ -39,6 +39,14 @@
           </el-table-column>
 
           <el-table-column
+              prop="roomNumber"
+              label="RoomNumber"
+              width="100"
+              align="center"
+          >
+          </el-table-column>
+
+          <el-table-column
               prop="applyTime"
               label="Apply Time"
               min-width="8"
