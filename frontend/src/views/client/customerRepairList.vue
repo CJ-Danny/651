@@ -9,7 +9,7 @@
     <div style="float:right;margin-right: 50px;margin-top: -70px"><img src="../../assets/repair/logo.png"></div>
 
     <div style="float:right;margin: 40px -8vw 20px 0">
- 
+
     <el-button type="primary" plain @click="openRepairDialog">Submit new repair orders</el-button>
   </div>
 
@@ -17,16 +17,15 @@
       <el-dialog title="Submit new repair orders" :visible.sync="dialogFormVisible">
         <el-form :model="form" :rules="rules">
           <el-form-item label="roomNumber" :label-width="formLabelWidth" prop="roomNumber">
-            <el-select v-model="form.roomNumber" placeholder="Please Select">
+            <el-select v-model="form.roomID" placeholder="Please Select">
               <el-option
                   v-for="item in roomOptions"
-                  :key="item.roomNumber"
+                  :key="item.roomId"
                   :label="item.roomNumber"
-                  :value="item.roomNumber">
+                  :value="item.roomId">
               </el-option>
             </el-select>
           </el-form-item>
-          
           <el-form-item label="Description" :label-width="formLabelWidth" prop="description">
             <el-input type="textarea" v-model="form.description" :rows="5" placeholder="Describe the problem"></el-input>
           </el-form-item>
@@ -43,40 +42,6 @@
         <el-form :model="returnForm" :rules="rules2">
           <el-form-item label="roomNumber" :label-width="formLabelWidth" prop="roomNumber">
             <div>{{this.tempOrder.roomNumber}}</div>
-          </el-form-item>
-          <el-form-item label="Contact name" :label-width="formLabelWidth" prop="contactPerson">
-            <div>{{this.tempOrder.contactName}}</div>
-          </el-form-item>
-          <el-form-item label="phone number" :label-width="formLabelWidth" prop="contactNumber">
-            <div>{{this.tempOrder.contactPhone}}</div>
-          </el-form-item>
-          <el-form-item label="Expected time" :label-width="formLabelWidth" prop="startDate">
-            <el-date-picker
-                v-model="returnForm.startDate"
-                type="date"
-                format="yyyy . MM . dd"
-                value-format="yyyy-MM-dd"
-                placeholder="startDate"
-                :picker-options="pickerOptions"
-            />
-            <el-select v-model="returnForm.startTime" placeholder="Please Select" style="margin-left: 20px">
-              <el-option label="morning" value="08:00:00"/>
-              <el-option label="afternoon" value="14:00:00"/>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Alternative time" :label-width="formLabelWidth" prop="date2">
-            <el-date-picker
-                v-model="returnForm.date2"
-                type="date"
-                format="yyyy . MM . dd"
-                value-format="yyyy-MM-dd"
-                placeholder="startDate"
-                :picker-options="pickerOptions"
-            />
-            <el-select v-model="returnForm.time2" placeholder="Please Select" style="margin-left: 20px">
-              <el-option label="morning" value="08:00:00"/>
-              <el-option label="afternoon" value="14:00:00"/>
-            </el-select>
           </el-form-item>
           <el-form-item label="Description" :label-width="formLabelWidth" prop="description">
             <div>{{this.tempOrder.description}}</div>
@@ -199,7 +164,7 @@ export default {
       ],
       dialogFormVisible: false,
       form: {
-        roomNumber:'',
+        roomID:'',
         description:'',
         contactPerson:'',
         contactNumber:'',
@@ -268,7 +233,7 @@ export default {
           if (res.data.errno === 0) {
             this.tableData = res.data.data.map(item => ({
               ...item,
-              roomNumber: `${item.roomNumber}`, 
+              roomNumber: `Room ${item.roomNumber}`, 
               
               solvePerson: "-", 
               startTime: "-"  
@@ -351,7 +316,7 @@ export default {
     createOrder(){
       const formData = new FormData()
       formData.append("token", this.$store.state.token);
-      formData.append("room",this.form.roomNumber);
+      formData.append("roomId",this.form.roomID);
       formData.append("description",this.form.description);
       formData.append("contactName",this.form.contactPerson);
       formData.append("contactPhone",this.form.contactNumber);
