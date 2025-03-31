@@ -209,7 +209,7 @@
 </template>
 
 <script>
-  import RentRoomDialog from './components/RentRoomDialog.vue';
+  import RentRoomDialog from './components/RentRoomDialog2.vue';
   import img1 from '@/assets/room-images/room1.jpg'
 import img2 from '@/assets/room-images/room2.jpg'
 import img3 from '@/assets/room-images/room3.jpg'

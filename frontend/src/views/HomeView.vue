@@ -803,7 +803,7 @@ button.radial-button1 {
 
 
 .Section_1 {
-  background-image: url("@/assets/homepage/Section1-bg.jpg");
+  background-image: url("../assets/homepage/Section1-bg.jpg");
   background-size: cover;
   /* min-width: 100%;
   min-height: 100%; */
@@ -1085,7 +1085,7 @@ button.radial-button1 {
 .AboutUs {
   width: 100%;
   min-height: 70vh;
-  background-image: url("@/assets/homepage/Section4_bg.png");
+  background-image: url("../assets/homepage/Section4_bg.png");
   background-position: center top;
   background-size: auto;
 }

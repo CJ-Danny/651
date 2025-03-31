@@ -32,6 +32,7 @@
             </div>
             <el-form-item prop="email" class="username-item">
               <el-input v-model.trim="loginForm.email" 
+            name="email"
             placeholder="email"
             class="form__input"
             autocomplete="off"
@@ -39,6 +40,7 @@
             </el-form-item>
             <el-form-item prop="password" class="password-item">
               <el-input v-model="loginForm.password"
+              name="password"
                         type="password"
                         placeholder="password"
                         class="form__input"
@@ -147,6 +149,10 @@ export default {
       }
     },
     login(formName) {
+      if (!this.$refs.loginFormRef) {
+      console.error('Form reference not found');
+      return;
+    }
   const formData = new FormData();
   formData.append("email", this.loginForm.email); 
   formData.append("password", this.loginForm.password);

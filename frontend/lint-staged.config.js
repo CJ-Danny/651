@@ -1,3 +1,6 @@
 module.exports = {
-  "*.{js,jsx,vue}": "vue-cli-service lint",
-};
+  "*.{js,vue}": [
+    "vue-cli-service lint",  
+    "npm run test:unit -- --findRelatedTests" 
+  ]
+}

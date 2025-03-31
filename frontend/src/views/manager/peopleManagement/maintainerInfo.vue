@@ -77,7 +77,7 @@
 
       <el-dialog
         title="Confirm Deletion":visible.sync="deleteConfirmVisible" width="30%">
-        <p>Are you sure you want to delete serviceman <strong>{{ deleteTarget?.name }}</strong>?</p>
+        <p>Are you sure you want to delete serviceman <strong>{{ deleteTarget ? deleteTarget.name : '' }}</strong>?</p>
         <span slot="footer">
           <el-button @click="deleteConfirmVisible = false">Cancel</el-button>
           <el-button type="primary" @click="handleDelete">Confirm</el-button>
@@ -114,9 +114,9 @@ border-top-left-radius: 20px;border-top-right-radius: 20px;display: flex;flex-di
             width="100"
            >
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.type===2" type="primary" disable-transitions>Water </el-tag>
-            <el-tag v-if="scope.row.type===3" type="warning" disable-transitions>Electricity </el-tag>
-            <el-tag v-if="scope.row.type===4" type="info" disable-transitions>Mechanic </el-tag>
+            <el-tag v-if="scope.row.type===2" type="primary" disable-transitions>Water</el-tag>
+            <el-tag v-if="scope.row.type===3" type="warning" disable-transitions>Electricity</el-tag>
+            <el-tag v-if="scope.row.type===4" type="info" disable-transitions>Mechanic</el-tag>
 
           </template>
         </el-table-column>
@@ -127,10 +127,11 @@ border-top-left-radius: 20px;border-top-right-radius: 20px;display: flex;flex-di
             >
           <template slot-scope="scope">
             <el-tag
-                :type="scope.row.status ? 'success' : 'danger'"
-                disable-transitions><div v-if="scope.row.status" >Avalible</div>
-              <div v-if="!scope.row.status">Unavailable</div>
-            </el-tag>
+    :type="scope.row.status ? 'success' : 'danger'"
+    disable-transitions>
+  <div v-if="scope.row.status">Available</div>
+  <div v-else>Unavailable</div>
+</el-tag>
           </template>
         </el-table-column>
         

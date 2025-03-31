@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import store from '@/store/index' 
+import store from '@/store/index1' 
 
 let originPush =  VueRouter.prototype.push;  
 
@@ -66,7 +66,7 @@ const routes = [
       {
         path:'manager/room',
         name:'roommanagement',
-        component: () => import('../views/manager/room/RoomDiagram.vue'),
+        component: () => import('../views/manager/room/RoomDiagram2.vue'),
 
       },
       {
@@ -87,7 +87,7 @@ const routes = [
         children: [
           {
             path: 'repairlist',
-            name: 'repairList',
+            name: 'repairList2',
             component: () => import('../views/manager/repairment/repairment.vue'),
           },
         ],
@@ -129,43 +129,41 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const url = to.name
-  // console.log(url)
-  // console.log(store.state.userState, store.state.userType)
-  if(url === 'login') {
-    if(store.state.userState !== -1) {
-      next(false)
-    } else {
-      next()
-    }
-  } else if(url === 'room' || url === 'statistics' || url === 'peopleManagement' || url === 'applyTopIndex') {
-    
-    next(false)
-  } else if(url === 'rooms' || url === 'repair' || url === 'visitor' || url === 'customerManagement' || url === 'managerManagement' || url === 'maintainerManagement' || url === 'rentRequests' || url === 'roomsDetail') {
-    
-    if(store.state.userState === 1 && store.state.userType === 1) {
-      next();
-    } else {
-      next(false)
-    }
-  } else if(url === 'repairList') {
-    
-    if(store.state.userState === 1) {
-      next();
-    } else {
-      next(false)
-    }
-  } else if(url === 'repairment' || url === 'userInfo'){
-    
-    if(store.state.userState === 0) {
-      next();
-    } else {
-      next(false)
-    }
-  }else {
-    
-    next()
+  
+  const isLoggedIn = store.state.userState !== -1; 
+  const isAdmin = store.state.userState === 1;
+  const isUser = store.state.userState === 0;
+
+  
+  if (to.name === 'login' && isLoggedIn) {
+    next({ name: 'home' });
+    return;
   }
-})
+
+ 
+  if (to.path.startsWith('/app/manager')) {
+    if (isAdmin) {
+      next(); 
+    } else {
+      next(false); 
+      
+      
+    }
+    return;
+  }
+
+  
+  if (to.path.startsWith('/app/client')) {
+    if (isUser) {
+      next(); 
+    } else {
+      next(false); 
+    }
+    return;
+  }
+
+  
+  next();
+});
 
 export default router

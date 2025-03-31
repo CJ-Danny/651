@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1743370116780" clover="3.2.0">
+  <project timestamp="1743370116780" name="All files">
+    <metrics statements="32" coveredstatements="32" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="32" coveredelements="32" complexity="0" loc="32" ncloc="32" packages="6" files="18" classes="18"/>
+    <package name="assets.room-images">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="room1.jpg" path="C:\Users\24996\Desktop\651\frontend\src\assets\room-images\room1.jpg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="room2.jpg" path="C:\Users\24996\Desktop\651\frontend\src\assets\room-images\room2.jpg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="room3.jpg" path="C:\Users\24996\Desktop\651\frontend\src\assets\room-images\room3.jpg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="room4.jpg" path="C:\Users\24996\Desktop\651\frontend\src\assets\room-images\room4.jpg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="room5.jpg" path="C:\Users\24996\Desktop\651\frontend\src\assets\room-images\room5.jpg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="InfoCard.vue" path="C:\Users\24996\Desktop\651\frontend\src\components\InfoCard.vue">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+      <file name="SignupDialog.vue" path="C:\Users\24996\Desktop\651\frontend\src\components\SignupDialog.vue">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="53" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.sideIndex">
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="AdminIndex.vue" path="C:\Users\24996\Desktop\651\frontend\src\components\sideIndex\AdminIndex.vue">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="31" count="1" type="stmt"/>
+      </file>
+      <file name="RepairIndex.vue" path="C:\Users\24996\Desktop\651\frontend\src\components\sideIndex\RepairIndex.vue">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="17" count="1" type="stmt"/>
+      </file>
+      <file name="SideIndex.vue" path="C:\Users\24996\Desktop\651\frontend\src\components\sideIndex\SideIndex.vue">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+      </file>
+      <file name="UserIndex.vue" path="C:\Users\24996\Desktop\651\frontend\src\components\sideIndex\UserIndex.vue">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="21" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="views">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="AppView.vue" path="C:\Users\24996\Desktop\651\frontend\src\views\AppView.vue">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+      <file name="HomeView.vue" path="C:\Users\24996\Desktop\651\frontend\src\views\HomeView.vue">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="249" count="1" type="stmt"/>
+        <line num="251" count="1" type="stmt"/>
+      </file>
+      <file name="Login.vue" path="C:\Users\24996\Desktop\651\frontend\src\views\Login.vue">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="views.client">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="RoomDiagram.vue" path="C:\Users\24996\Desktop\651\frontend\src\views\client\RoomDiagram.vue">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="204" count="1" type="stmt"/>
+        <line num="206" count="1" type="stmt"/>
+        <line num="207" count="1" type="stmt"/>
+        <line num="208" count="1" type="stmt"/>
+        <line num="209" count="1" type="stmt"/>
+        <line num="210" count="1" type="stmt"/>
+        <line num="211" count="1" type="stmt"/>
+      </file>
+      <file name="UserInfo.vue" path="C:\Users\24996\Desktop\651\frontend\src\views\client\UserInfo.vue">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="141" count="1" type="stmt"/>
+        <line num="143" count="1" type="stmt"/>
+      </file>
+      <file name="customerRepairList.vue" path="C:\Users\24996\Desktop\651\frontend\src\views\client\customerRepairList.vue">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="214" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="views.client.components">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="RentRoomDialog.vue" path="C:\Users\24996\Desktop\651\frontend\src\views\client\components\RentRoomDialog.vue">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
