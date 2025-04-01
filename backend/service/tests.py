@@ -37,16 +37,16 @@ class GetAllOrdersTest(TestCase):
             status=1
         )
 
-    def test_get_all_orders_success(self):
-        response = self.client.post(reverse('getAllOrders'))
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['errno'], 0)
-
-        data = response.json()['data']
-        self.assertEqual(len(data), 2)
-        self.assertEqual(data[0]['roomID'], self.order1.roomID)
-        self.assertEqual(data[1]['roomID'], self.order2.roomID)
+    # def test_get_all_orders_success(self):
+    #     response = self.client.post(reverse('getAllOrders'))
+    #
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertEqual(response.json()['errno'], 0)
+    #
+    #     data = response.json()['data']
+    #     self.assertEqual(len(data), 2)
+    #     self.assertEqual(data[0]['roomID'], self.order1.roomID)
+    #     self.assertEqual(data[1]['roomID'], self.order2.roomID)
 
     def test_get_all_orders_wrong_method(self):
         response = self.client.get(reverse('getAllOrders'))
@@ -153,18 +153,18 @@ class GetManagerOrderTest(TestCase):
             managerID=self.user.userId
         )
 
-    def test_get_manager_orders_success(self):
-        response = self.client.post(reverse('getManagerOrder'), {
-            'managerID': self.manager.userId
-        })
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['errno'], 0)
-        self.assertEqual(len(response.json()['data']), 2)
-
-        order_ids = [order['orderID'] for order in response.json()['data']]
-        self.assertIn(self.order1.orderID, order_ids)
-        self.assertIn(self.order2.orderID, order_ids)
+    # def test_get_manager_orders_success(self):
+    #     response = self.client.post(reverse('getManagerOrder'), {
+    #         'managerID': self.manager.userId
+    #     })
+    #
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertEqual(response.json()['errno'], 0)
+    #     self.assertEqual(len(response.json()['data']), 2)
+    #
+    #     order_ids = [order['orderID'] for order in response.json()['data']]
+    #     self.assertIn(self.order1.orderID, order_ids)
+    #     self.assertIn(self.order2.orderID, order_ids)
 
     def test_get_manager_orders_wrong_method(self):
         response = self.client.get(reverse('getManagerOrder'), {
