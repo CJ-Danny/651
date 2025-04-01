@@ -193,6 +193,9 @@ def getOrders(request):
     except:
         return JsonResponse({'errno': 1002, 'msg': 'token error'})
     orders = list(Order.objects.filter(userID=user.userId).values())
+    for order in orders:
+        room = Room.objects.get(roomId=order['roomID'])
+        order['roomNumber'] = room.number
     return JsonResponse({'errno': 0, 'data': orders})
 
 
@@ -213,9 +216,9 @@ def applyOrder(request):
         roomID=roomId,
         status=0,
         description=description,
-        submitTime=datetime.datetime.now(),
-        assignTime=datetime.datetime.now(),
-        finishTime=datetime.datetime.now()
+        submitTime=datetime.datetime.now()
+        # assignTime=datetime.datetime.now(),
+        # finishTime=datetime.datetime.now()
     )
     order.save()
     return JsonResponse({'errno': 0, 'msg': "apply success"})
