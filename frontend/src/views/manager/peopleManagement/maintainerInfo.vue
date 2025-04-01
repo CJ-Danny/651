@@ -40,9 +40,9 @@
           </el-form-item>
           <el-form-item prop="type" label="Type" :label-width="formLabelWidth">
             <el-select v-model="form.type" placeholder="Please select a type">
-              <el-option label="Water" value=1></el-option>
-              <el-option label="Electricity" value=2></el-option>
-              <el-option label="Mechanic" value=3></el-option>
+              <el-option label="Water" value=2></el-option>
+              <el-option label="Electricity" value=3></el-option>
+              <el-option label="Mechanic" value=4></el-option>
             </el-select>
           </el-form-item>
 
